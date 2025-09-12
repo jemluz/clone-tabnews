@@ -1,0 +1,8 @@
+root = true
+
+# Will apply the rules for all files
+[*]
+
+# Define identation of 2 spaces
+ident_style = space
+ident_size = 2
