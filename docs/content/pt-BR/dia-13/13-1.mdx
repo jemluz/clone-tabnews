@@ -1,0 +1,111 @@
+---
+title: "Não confie em nenhum serviço"
+order: "13.1"
+lang: pt-BR
+translationStatus: original
+date: 2025-10-17
+favorite: true
+notionId: 28fcf904-83bd-80e2-a5c7-d197c9fc1196
+---
+
+# Não confie em nenhum serviço
+
+### Links mencionados
+
+[Vercel Status](https://www.vercel-status.com/)
+
+[health.aws.amazon.com](https://health.aws.amazon.com/health/status)
+
+[GitHub Status](https://www.githubstatus.com/)
+
+**Explicação de como foi o processo de migração mencionado na aula**
+
+[· curso.dev](https://curso.dev/alunos/MaykonRocha/f81d147a-b0b7-44d2-853c-07779b306f0e)
+
+---
+
+Quando eu falo para não confiar em nunhum serviço, eu não estou falando em confiar no sentido “moral”.
+
+Agora, uma coisa que você não pode confiar e que não existe é 100% de uptime, ou seja um serviço que consiga, dentro de 1 ano ficar online 100% do tempo.
+
+Pode ser até que aconteça, mas não contamos com isso.
+
+{/* ![](/img/dia-13/13-1/01.png) */}
+
+A maioria das tecnologias na área se compromentem a entregar um uptime de 99% do tempo, o que se traduz mais ou menos em 9h de downtime por ano, ou 44 min por mês.
+
+{/* ![](/img/dia-13/13-1/02.png) */}
+
+E tudo isso é combinado com você (usuário) através do SLA.
+
+{/* ![](/img/dia-13/13-1/03.png) */}
+
+A vercel por exemplo tem uma pág específica de SLA. Onde ela se compromete com 99.99%
+
+{/* ![](/img/dia-13/13-1/04.png) */}
+
+Caso isso não seja cumprido eles fornecem uma tabelinha mostrando o abatimento de valores nas próximas faturas.
+
+A AWS tbm tem uma tabelinha parecida.
+
+{/* ![](/img/dia-13/13-1/05.png) */}
+
+{/* ![](/img/dia-13/13-1/06.png) */}
+
+Então essa aula é para que você tenha mais uma ferramenta no seu cinto de utilidades:
+
+### As Status Pages
+
+As Status Pages são páginas especializadas em mostrar a saúde dos serviços que você contratou para construir o seu produto. E caso ele pare de funcionar de uma hora para outra, consultar essas Status Pages pode ser um ótimo ponto de partida
+
+{/* ![](/img/dia-13/13-1/07.png) */}
+
+Para encontrar essas páginas basta procurar no google pelo nome do serviço + status
+
+{/* ![](/img/dia-13/13-1/08.png) */}
+
+{/* ![](/img/dia-13/13-1/09.png) */}
+
+As vezes o problema de indisponibilidade não é nem na vercel em si, é em um outro provedor que ela usa por baixo dos panos como por exemplo a AWS
+
+{/* ![](/img/dia-13/13-1/10.png) */}
+
+{/* ![](/img/dia-13/13-1/11.png) */}
+
+{/* ![](/img/dia-13/13-1/12.png) */}
+
+### Cadeia de dependencias
+
+Essa cadeia de dependencias comentada logo acima, de um serviço indisponibilizar o outro… ja aconteceu da API do [curso.dev](http://curso.dev) ficar fora do ar
+
+{/* ![](/img/dia-13/13-1/13.png) */}
+
+Eu estava na estrada e comecei a receber alertas de erro 500, e logo depois alguns alunos começaram a reportar no e-mail que não conseguiam fazer login, ou a lista das aulas não abria.
+
+{/* ![](/img/dia-13/13-1/14.png) */}
+
+A pagina de status da vercel estava com um aviso falando que uma região inteira da AWS para o serviço de servless onde estão as lambdas que a vercel usa, estava fora do ar.
+
+E na página de status da AWS consultando esse recurso nesse dia (13 de junho) a região de North Virginia, teve uma degradação absurda de serviços.
+
+{/* ![](/img/dia-13/13-1/15.png) */}
+
+{/* ![](/img/dia-13/13-1/16.png) */}
+
+Usando o notebook do Guga (meu irmão), pararamos em um shopping e usando o codespaces realizei a migração de todo [curso.dev](http://curso.dev) de uma região para outra.
+
+{/* ![](/img/dia-13/13-1/17.png) */}
+
+Por isso as vezes uma simples consulta em uma página de status pode mudar completamente o escopo do que você precisa avaliar sobre o problema e evitar perder tempo com coisas que não estão relacionadas.
+
+Inclusive em alguns serviços vc pode cadastrar seu e-mail para receber notificações de status.
+
+### Não seja fanático das páginas de status
+
+Você não pode acreditar cegamente nos status das páginas de status pq até elas podem ter problemas de status.
+
+Em 2017 aconteceu um caso simbólico com a AWS onde ela derrubou grande parte da internet por umas 5h. Sendo que todos os ícones das páginas de status deles, estavam verdinhos.
+
+{/* ![](/img/dia-13/13-1/18.png) */}
+
+Sendo que o problema foi tão grande que criou um efeito em cascata dentro da própria AWS, e um serviço foi derubando o outro.

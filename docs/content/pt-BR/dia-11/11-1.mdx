@@ -1,0 +1,176 @@
+---
+title: "Resolução de DNS - lvl 2"
+order: "11.1"
+lang: pt-BR
+translationStatus: original
+date: 2025-09-18
+notionId: 271cf904-83bd-80ce-98c5-cce7443ca24e
+---
+
+# Resolução de DNS - lvl 2
+
+Seja bem vindo ao segundo nível do desafio!
+
+{/* ![](/img/dia-11/11-1/01.png) */}
+
+Recapitulando o que aprendemos no nível 1:
+
+1 passo para trás + 2 passos para frente
+
+{/* ![](/img/dia-11/11-1/02.png) */}
+
+A ideia do DNS (e até da própria internet) é ser algo realmente distribuído.
+
+Caso aconteça algum evento catastrófico numa região do planeta, a internet não para pq as outras regiões que não foram afetadas vão dar conta de prover a internet para aquele local.
+
+Então vamos lá, do zero:
+
+A única coisa que o seu computador precisa para se conectar ao site desejado, é descobrir qual o IP daquele servidor. Mas de início ele não tem esse número.
+
+{/* ![](/img/dia-11/11-1/03.png) */}
+
+Então a primeira coisa que acontece quando vc digita na barra de pesquisa o nome do site desejado é:
+
+O sistema operacional (OS) faz uma requisição pela rede do seu servidor de internet, que possuí um negócio chamado Recursive Resolver.
+
+E este RR se encarrega de descobrir o bendito IP.
+
+{/* ![](/img/dia-11/11-1/04.png) */}
+
+Para descobrir, os RR consultam os Root Servers que são formados por 13 pontos de entrada, e esse pontos são “hardcoded” (escritos a mão) nos RR.
+
+Esses 13 IPs já são a única informação que o RR precisa para começar a “caçar” pelo IP desejado
+
+{/* ![](/img/dia-11/11-1/05.png) */}
+
+Esses Root Servers estão distribuídos pelo planeta, com mais de 1700 instancias para garantir a redundância do serviço.
+
+{/* ![](/img/dia-11/11-1/06.png) */}
+
+{/* ![](/img/dia-11/11-1/07.png) */}
+
+Mas voltando o RR sai perguntando para esses RS qual o IP do domnínio desejado.
+
+O Root Server mais fraco: “não sei”
+
+{/* ![](/img/dia-11/11-1/08.png) */}
+
+Acabou a busca? Fracassamos? Não.
+
+O Root Server especifico pode de fato não saber onde está o IP desejado, mas ele sabe ler o endereço de trás para frente, e pelo fim do endereço
+
+{/* ![](/img/dia-11/11-1/09.png) */}
+
+O  domínio não começa com “.br”, ele começa com “.”
+
+{/* ![](/img/dia-11/11-1/10.png) */}
+
+{/* ![](/img/dia-11/11-1/11.png) */}
+
+Só que isso é escondido de você, mas continua sendo válido. Esse é o FQDN
+
+{/* ![](/img/dia-11/11-1/12.png) */}
+
+E na prática, esse “.” que é a primeira parte do endereço, representa o Root Server
+
+{/* ![](/img/dia-11/11-1/13.png) */}
+
+E agora a segunda parte, que seria o “.br” é o Top Level Domain (TLD).
+
+{/* ![](/img/dia-11/11-1/14.png) */}
+
+E a ÚNICA COISA que os Root Servers sabem, é onde estão os TLDs.
+
+Essa é uma lista enorma (dos TLDs), mas é dividida em 2 categorias…
+
+{/* ![](/img/dia-11/11-1/15.png) */}
+
+Uma categoria é os ccTLDs, que são TLDs reservados para os países
+
+{/* ![](/img/dia-11/11-1/16.png) */}
+
+A outra categoria é os gTLDs
+
+{/* ![](/img/dia-11/11-1/17.png) */}
+
+Por exemplo: o “.com” que é um gTLD para abreviar sites comerciais
+
+{/* ![](/img/dia-11/11-1/18.png) */}
+
+E outros também entram nessa categoria
+
+{/* ![](/img/dia-11/11-1/19.png) */}
+
+… e até um “.bradesco” sim isso mesmo kkkkkk
+
+{/* ![](/img/dia-11/11-1/20.png) */}
+
+Em 2015 o Bradesco concluiu com a ICANN a compra e disponibilização global do TLD “.bradesco”
+
+Ou seja, o “.bradesco” teve que ser inserido em todos os RS espalhados pelo mundo.
+
+{/* ![](/img/dia-11/11-1/21.png) */}
+
+Você também pode comprar seu TLD, se você tiver muito dinheiro e muita infra para aguentar uma exposição global.
+
+Mas voltando…
+
+Nessa brincadeira, a única coisa que os RS fazem é indicar o IP de qual servidor gerencia o TLD desse domínio (nesse caso um “.br”)
+
+{/* ![](/img/dia-11/11-1/22.png) */}
+
+Então o que é entregue de volta para o resolver, é uma outra lista de IPs.
+
+{/* ![](/img/dia-11/11-1/23.png) */}
+
+E agora o RR vai perguntar para um desses caras qual o IP final do domínio desejado, e o TLD também vai responder um “não sei”
+
+{/* ![](/img/dia-11/11-1/24.png) */}
+
+Mas ele vai saber qual o o IP do servidor que guarda todas as informações do teu domínio, que é um Authoritative Server.
+
+{/* ![](/img/dia-11/11-1/25.png) */}
+
+Esse AS possui de forma concreta todos os records (registros) do seu domínio, incluindo o IP do servidor final  que pode estar em um alias de “A record” ou de “CNAME”
+
+E aí sim o AS entrega para o RR o IP final, que repassa para o seu computador poder acessar o site desejado. Finalmente!
+
+{/* ![](/img/dia-11/11-1/26.png) */}
+
+Mas depois de tudo isso vc deve estar se perguntando
+
+“isso não foi dar um passo para trás, foram varios passos para trás, não?”
+
+“deve demorar bastante?”
+
+Ótima observação, e é relativamente rápido esse percurso pelos servidores, mas é muito importante ter claro em sua mente que seria um desperdício completo fazer tudo isso para cada requisição!
+
+Até pq para um mesmo domínio, vc também inumeras requisições (imagens, arquivos de estilo, arquivos de script). E entre uma requisição e outra os records do DNS provavelmente não vão mudar…
+
+Por isso, existe um negócio chamado TTL, que é uma estratégia de cache que define quanto tempo um registro de domínio deve ser mantido em cache (quanto tempo de vida esse cache tem)
+
+{/* ![](/img/dia-11/11-1/27.png) */}
+
+E essa camada de cache podem acontecer em todos os passos mencionados
+
+{/* ![](/img/dia-11/11-1/28.png) */}
+
+## Resumindo (de um aluno do curso.dev)
+
+Quando você digita um domínio (ex: [www.site.com](http://www.site.com/)), o recursive resolver do provedor é quem vai buscar o IP.
+
+Ele consulta em etapas:
+
+- Root server → indica qual servidor TLD procurar (.com, .br etc.).
+- TLD server (ex: .com) → aponta para o servidor responsável pelo domínio específico.
+- Authoritative server → responde com o IP real do domínio (guardado em registros DNS).
+
+Tipos de domínios:
+
+- TLD = domínios de topo (.com, .org, .br).
+- ccTLD = código de país (.br, .us).
+- gTLD = genéricos (.com, .org, .net).
+
+DNS Records (registros): informações como A (IP v4), AAAA (IP v6), MX (e-mail), CNAME (alias).
+
+TTL (Time To Live): tempo que a resposta fica em cache antes de precisar consultar tudo de novo.

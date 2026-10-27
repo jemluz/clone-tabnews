@@ -1,0 +1,84 @@
+---
+title: "The foundation | node.js and .nvmrc"
+order: "3"
+lang: en-US
+translationStatus: manual
+date: 2025-02-11
+notionId: 21ccf904-83bd-8067-89d1-f69aa2d21474
+---
+
+import { Callout } from "nextra/components";
+
+# The foundation | node.js and .nvmrc
+
+### The foundation | And the idea of reusing OpenSource culture
+
+> "If you want to create an apple pie from scratch, you must first create the universe" - Carl Sagan
+
+{/* ![](/img/dia-03/index/01.png) */}
+
+{/* ![](/img/dia-03/index/02.png) */}
+
+In programming life, **nothing is created from scratch**, you will always build your applications on top of things that have **already been created by other people**.
+
+After all, if you were to create a program from absolute scratch, that would include creating the language, the IDE, the operating system, the hardware, your house/work where you're going to put the computer, your neighborhood, city, country, planet earth, solar system, galaxy and finally the universe
+
+#### kkkkkkkkkk what a lot of work, right? 😮‍💨Melhor give up the idea 😅
+
+So **develop the ability to feel comfortable reusing everything** that has already been created and is already within your reach.
+
+<Callout emoji="👌">
+**Let go of** the idea of creating something original, and **get attached to** the process of **understanding the logic behind the creation of each thing.**
+</Callout>
+
+#### All this to introduce you to Node.js and npm
+
+While **Node.js** has revolutionized the way we develop web applications, allowing developers to use **JavaScript on both the frontend and backend**, promoting more cohesive and efficient development...
+
+... **npm** is nothing more than the **world's largest repository of open source packages**. This makes it easy to add functionality to a Node.js project by **using** **third-party libraries and modules**.
+
+#### Node.js: The brains behind the reuse of everything that makes a project possible.
+
+**(Which are the libraries** in case it wasn't clear 😁)
+
+{/* ![](/img/dia-03/index/03.png) */}
+
+### Defining a node version for your project
+
+When we talk about **node.js** projects, one of the problems we're sure to face is `versioning`.
+
+That's why from the start of the project we have to make it clear which version of node is compatible/recommended for your development.
+
+**nvm (Node Version Manager)** is a tool that allows us to handle different versions of node on our machine with ease.
+
+Let's use it in the terminal to run `nvm install lts/hydrogen` and use that version in our development environment. And then use `nvm alias default lst/hydrogen` to set this version as the default.
+
+{/* ![](/img/dia-03/index/04.png) */}
+
+This way the **node version has been standardized for my local environment.**
+
+But we still need to standardize so that other devs who may access the repository know which version is ideal...
+
+### Configuring.nvmrc
+
+To do this, we'll use `.nvmrc`, a file that stays inside our project and keeps the **information about which version of node should be used.**
+
+{/* ![](/img/dia-03/index/05.png) */}
+
+The file should **only** contain **one line with the desired node version**.
+
+When you run `nvm install` or `nvm use` in the terminal, it will search for `.nvmrc` and install the version of the file, if there is one.
+
+{/* ![](/img/dia-03/index/06.png) */}
+
+{/* ![](/img/dia-03/index/07.png) */}
+
+#### Suffix rc = Run Commands
+
+This suffix is traditionally used in **configuration files** to indicate that they contain settings or commands that **should be run or read by a specific program.**
+
+- `.nvmrc` → will be read by **nvm**
+- `.bashrc` → will be read by **bash**
+- `.npmrc` → will be read by **npm**
+
+{/* ![](/img/dia-03/index/08.png) */}

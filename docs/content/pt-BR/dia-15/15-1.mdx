@@ -1,0 +1,139 @@
+---
+title: "Instalar um Test Runner"
+order: "15.1"
+lang: pt-BR
+translationStatus: original
+date: 2025-10-23
+notionId: 295cf904-83bd-80b7-9dd1-cb0c6ef26ac9
+---
+
+# Instalar um Test Runner
+
+Se esse assunto for intruduzido da forma errada, pode parecer tecnologia alienigena
+
+{/* ![](/img/dia-15/15-1/01.png) */}
+
+Na prática, o Test Runner (ou Test Framework) é só um código que executa outros códigos, o seu código, para ser mais específico
+
+{/* ![](/img/dia-15/15-1/02.png) */}
+
+Dessa forma você não terá que testar tudo que programou manualmente. Você vai definir como você espera que o código se comporte, e o test runner irá executar esse código levando essas expectativas em consideração! Guarde bem essa palavra: espera!
+
+{/* ![](/img/dia-15/15-1/03.png) */}
+
+Por exemplo:
+
+- Se na v1 você criou os seguintes testes
+  - Cadastrar com um novo e-mail deve retornar sucesso
+  - Cadastrar com um e-mail já utilizado deve retornar erro
+- E na v2, depois de codar uma série de novas funcionalidades, esses testes seguem se comportando da mesma forma… podemos deduzir que essa parte do sistema segue funcionando como esperado
+  {/* ![](/img/dia-15/15-1/04.png) */}
+- Mas se de alguma forma o teste “Cadastrar com um e-mail já utilizado deve retornar erro” retornar sucesso, algo está errado, algo está fora do esperado, e provavelmente ali, alguma coisa quebrou → Isso será acusado como um teste que não passou
+
+{/* ![](/img/dia-15/15-1/05.png) */}
+
+Ter um teste runner acusando que um teste não passou é mais importante que ter um teste runner acusando que um teste passou. Pois isso evita você de subir para produção um código que sofreu regressão
+
+{/* ![](/img/dia-15/15-1/06.png) */}
+
+Vimos isso acontecer na aula passada quando, ao comentar um trecho do código, vários testes começaram a quebrar. Indicando que o sistema sofreu uma forte regressão.
+
+{/* ![](/img/dia-15/15-1/07.png) */}
+
+Essa é uma das caracteristicas mais importantes que você quer que um Test Runner tenha: que eles retornem um report do que aconteceu durante os testes
+
+{/* ![](/img/dia-15/15-1/08.png) */}
+
+Isso tanto de forma visual para vc ter um feedback rápido, quanto de forma programática para que você possa engatar isso no fluxo de CI, e fazer ele barrar tudo se um dos testes não passar
+
+{/* ![](/img/dia-15/15-1/09.png) */}
+
+{/* ![](/img/dia-15/15-1/10.png) */}
+
+Outra funcionalidade bacana é o modo watch, onde o Test Runner fica “vigiando” o seu código, e quando acontece alguma alteração, ele roda toda a bateria de testes novamente.
+
+{/* ![](/img/dia-15/15-1/11.png) */}
+
+### Algumas alternativas
+
+O interessante é que cada Test Runner tenta atacar os testes automatizados por diferentes ângulos e ofertam features diferentes
+
+Por exemplo: um dos primeiros test runner para javascript a realmente ganhar tração foi o mocha.
+
+E para se vender como confiável ele roda os testes de forma serial (um de cada vez)
+
+{/* ![](/img/dia-15/15-1/12.png) */}
+
+Mas também temos o AVA, onde sua feature principal é conseguir rodar os testes de forma concorrente (em paralelo)
+
+{/* ![](/img/dia-15/15-1/13.png) */}
+
+Também temos o playwright, que serve para testes e2e (de fora a fora), incluindo a interface pois ele consegue simular instancias dos navegadores e sair clicando no seu site.
+
+{/* ![](/img/dia-15/15-1/14.png) */}
+
+### Qual escolher?
+
+Para concluirmos nossa tarefa, precisamos escolher um.
+
+{/* ![](/img/dia-15/15-1/15.png) */}
+
+Na verdade não foi muito difícil escolher qual usar na época que o TabNews foi criado, porque um deles ganhou uma tração absurda: o Jest!
+
+{/* ![](/img/dia-15/15-1/16.png) */}
+
+{/* ![](/img/dia-15/15-1/17.png) */}
+
+Ele foi criado pelo facebook e o pitch principal era ser simples de se usar, voltado para o react principalmente, mas depois ganhou suporte para outras bibliotecas e frameworks
+
+{/* ![](/img/dia-15/15-1/18.png) */}
+
+Para você ter uma noção, se a gente entrar na página do mocha no npm e conferir as estatisticas, ele tá recebendo 7 milhões de downloads por semana.
+
+Com 8 meses atras desde a ultima atualização
+
+{/* ![](/img/dia-15/15-1/19.png) */}
+
+Com o jest por sua vez, temos 21M, e com atualizações mais recorrentes.
+
+{/* ![](/img/dia-15/15-1/20.png) */}
+
+### Instalando
+
+No terminal do codespaces vamos rodar `npm install —save-dev jest@29.6.2`
+
+{/* ![](/img/dia-15/15-1/21.png) */}
+
+Depois disso, já conseguimos vê-lo dentro do `package.json`
+
+{/* ![](/img/dia-15/15-1/22.png) */}
+
+E agora vamos adicionar um script chamado `“test”: “jest”` no `package.json` também
+
+{/* ![](/img/dia-15/15-1/23.png) */}
+
+A partir daí já conseguimos rodar no terminal, mas dá um erro pois ainda não temos testes
+
+{/* ![](/img/dia-15/15-1/24.png) */}
+
+Mas mesmo com erro, já podemos dizer que o Test Runner já está “Running”
+
+{/* ![](/img/dia-15/15-1/25.png) */}
+
+Inclusive podemos criar um outro script para habilitar aquele modo `watch`
+
+{/* ![](/img/dia-15/15-1/26.png) */}
+
+Para isso adicionamos `“test:watch”: “jest —watch”`
+
+{/* ![](/img/dia-15/15-1/27.png) */}
+
+E ao rodar no terminal, ele entra em um modo “contínuo”
+
+{/* ![](/img/dia-15/15-1/28.png) */}
+
+Link do commit da aula → [install \`jest\` and configure test scripts · filipedeschamps/clone-tabnews@89dd1fb](https://github.com/filipedeschamps/clone-tabnews/commit/89dd1fbfa2b70cef2c9f5a629638a0e5af77dec1)
+
+Agora que instalamos e commitamos, podemos marcar como concluída!
+
+{/* ![](/img/dia-15/15-1/29.png) */}

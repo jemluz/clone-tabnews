@@ -1,0 +1,186 @@
+---
+title: "Criar um teste de verdade"
+order: "15.3"
+lang: pt-BR
+translationStatus: original
+date: 2025-11-14
+notionId: 2abcf904-83bd-80cc-8170-e0cf50f71bbe
+---
+
+# Criar um teste de verdade
+
+Agora nós vamos para a ultima task desse issue
+
+{/* ![](/img/dia-15/15-3/01.png) */}
+
+Iremos fazer em 2 abordagens, a primeira é posicionar o alvo e depois atirar
+
+{/* ![](/img/dia-15/15-3/02.png) */}
+
+E na segunda iremos atirar a flecha e depois sair correndo para colocar o alvo no lugar, essa aqui é só para profissionais!
+
+{/* ![](/img/dia-15/15-3/03.png) */}
+
+### Preparado?
+
+Para começar, vamos deletar o teste anterior
+
+{/* ![](/img/dia-15/15-3/04.png) */}
+
+Agora vamos criar uma pasta chamada `/models` e dentro dela um arquivo chamado `calculadora.js`
+
+{/* ![](/img/dia-15/15-3/05.png) */}
+
+Essa pasta “models” já é uma referência ao modelo MVC que adotaremos na arquitetura do tabnews
+
+{/* ![](/img/dia-15/15-3/06.png) */}
+
+{/* ![](/img/dia-15/15-3/07.png) */}
+
+vamos criar uma função somar
+
+{/* ![](/img/dia-15/15-3/08.png) */}
+
+e exportar essa função para que ela possa ser usada em outros arquivos com `exports.somar = somar`
+
+{/* ![](/img/dia-15/15-3/09.png) */}
+
+### Módulos commonJS e ES6/ESM
+
+Esse estilo de exportar, vem de um padrão chamado commonjs, que está disponível desde a criação do nodejs. Ele foi criado quando o JavaScript ainda não tinha um sistema de módulos próprio em sua linguagem
+
+{/* ![](/img/dia-15/15-3/10.png) */}
+
+E depois de um tempo o TC39, que é o comitê que especifica e regula a linguagem JavaScript, lançou a sexta edição do ECMAScript em 2015.
+
+{/* ![](/img/dia-15/15-3/11.png) */}
+
+Nessa versão foi disponibilizado um sistema oficial de módulos chamado ES6 modules
+
+{/* ![](/img/dia-15/15-3/12.png) */}
+
+{/* ![](/img/dia-15/15-3/13.png) */}
+
+Só tem um pequeno grande detalhe, o Jest na v29.6 ainda não suporta esse tipo de módulo
+
+{/* ![](/img/dia-15/15-3/14.png) */}
+
+Na realidade está em fase experimental
+
+{/* ![](/img/dia-15/15-3/15.png) */}
+
+E ótimo pois agora temos a oportunidade de aprender sobre o sistema de módulos antigo! Que vai ser um ótimo conhecimento para situações como trabalhar em empresas com muito código legado.
+
+E também depois aprender uma forma de como utilizar esse novo sistema de módulos e fazer mesmo assim fazer o Jest entender usando um negócio chamado **transpiling,** que vai converter um código de uma versão incompatível para uma versão compatível
+
+{/* ![](/img/dia-15/15-3/16.png) */}
+
+Então se agora estamos “exportando” significa também que podemos “importar” em algum lugar
+
+{/* ![](/img/dia-15/15-3/17.png) */}
+
+Vamos importar ela dentro do arquivo de testes, usando a função `require()`
+
+{/* ![](/img/dia-15/15-3/18.png) */}
+
+Lembra que estamos na primeira abordagem:
+
+- Primeiro definimos o alvo = criamos o model calculadora
+- Depois atiramos a flecha = criamos o teste para a calculadora
+
+{/* ![](/img/dia-15/15-3/19.png) */}
+
+### Criando o teste
+
+Vamos criar um teste para a função somar
+
+{/* ![](/img/dia-15/15-3/20.png) */}
+
+O teste passou, mas não está valendo pois não temos nenhum expect
+
+{/* ![](/img/dia-15/15-3/21.png) */}
+
+Vamos adicionar o expect
+
+- `expect(resultado)` = softcoded
+- `toBe(4)` = hardcoded
+
+{/* ![](/img/dia-15/15-3/22.png) */}
+
+{/* ![](/img/dia-15/15-3/23.png) */}
+
+### Não seja fofo com os cenários de testes!
+
+Agora estamos mais livres! Livres para mexer no código sem medo de causar regressão.
+
+Vamos aproveitar e alterar o código melhorando os nomes dos parâmetros para deixar menos genérico.
+
+{/* ![](/img/dia-15/15-3/24.png) */}
+
+Ops! Algo de errado não está certo…
+
+{/* ![](/img/dia-15/15-3/25.png) */}
+
+{/* ![](/img/dia-15/15-3/26.png) */}
+
+o primeiro teste, 2+2 passou uma rasteira na gente. Ele falou que a calculadora estava funcionando, mas claramente não está.
+
+Isso pq na ultima refatoração, trocamos o `+` por `*`, e nesse caso `2+2 = 4` e `2 * 2 = 4` também
+
+{/* ![](/img/dia-15/15-3/27.png) */}
+
+Dito isso, saiba que um teste não tem a capacidade de afirmar que um código está funcionando, ele tem apenas a capacidade de sinalizar que algo esperado aconteceu ou não!
+
+{/* ![](/img/dia-15/15-3/28.png) */}
+
+Por isso tome cuidado ao querer ser muito fofo com os cenários de teste, o intuíto não é só ver a sua aplicação passando pelo caminho feliz, tem o contrário tb:
+
+pelo fato de agora você ter a habilidade de criar vários cenários de forma fácil, o objetivo é criar eles até encontrar um em que sua aplicação passe mal, que revele que ela não está se comportando de uma forma adequada
+
+### Testes são uma ótima forma de documentar
+
+O legal é que isso é uma das melhores documentações que seu sistema pode ter, pois testes bem feitos revelam com precisão como um sistema funciona
+
+Isso salvou muito a minha vida na época do [pagar.me](http://pagar.me) , pois não havia documentação, então regras sobre cartão de crédito, valores a receber, valores a pagar, split de valores, antecipação, estorno, estorno parcial… era um inferno de regras de negócios complexas
+
+{/* ![](/img/dia-15/15-3/29.png) */}
+
+E o que salvava era a bateria de testes!
+
+E é aqui que entramos na segunda abordagem, aquela que não é natural, onde primeiro atiramos a flexa e depois corremos para colocar o alvo. Só para profissionais!
+
+{/* ![](/img/dia-15/15-3/30.png) */}
+
+### Isso é o que chamamos de TDD
+
+{/* ![](/img/dia-15/15-3/31.png) */}
+
+E como agora a coisa vai ficar séria eu vou até alterar o layout do meu terminal
+
+{/* ![](/img/dia-15/15-3/32.png) */}
+
+E depois de usar o TDD por um tempo, você já começa a especular vários cenários que nem você sabe como sua aplicação se comporta, mas quando você ta focado nesse modo de só criar cenários, você começa a ficar criativo e bolar situações antes do seu usuário final se encontrar nelas
+
+Um cenário que me veio na cabeça agora por exemplo.
+
+{/* ![](/img/dia-15/15-3/33.png) */}
+
+Aqui eu atirei a flecha e ela tá caindo na string “Erro”
+
+{/* ![](/img/dia-15/15-3/34.png) */}
+
+E eu vou sair correndo atrás para colocar o alvo nesse lugar, que é voltar pro model e implementar isso.
+
+{/* ![](/img/dia-15/15-3/35.png) */}
+
+A gora o alvo está acertando a flecha!
+
+### Aviso de amigo
+
+Se você é novo na programação, não recomendo começar com TDD, pois muitas vezes você ainda não sabe o que é desejado como retorno de uma operação.
+
+E nesses casos, fazer essa engenharia reversa se torna muito custoso.
+
+Pronto, agora podemos marcar nossa ultima tarefa como concluída e também fechar a issue!
+
+{/* ![](/img/dia-15/15-3/36.png) */}

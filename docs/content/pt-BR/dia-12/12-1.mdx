@@ -1,0 +1,141 @@
+---
+title: "Configurar o Servidor de DNS"
+order: "12.1"
+lang: pt-BR
+translationStatus: original
+date: 2025-10-09
+notionId: 287cf904-83bd-8042-92ed-fd984de00727
+---
+
+# Configurar o Servidor de DNS
+
+A própria vercel fornece servidores de DNS
+
+{/* ![](/img/dia-12/12-1/01.png) */}
+
+Agora temos que pegar o respectivo domínio que foi comprado e declarar ele lá dentro do servidor de DNS da Vercel, para que ele seja listado lá e se torne o servidor autoritativo do domínio
+
+{/* ![](/img/dia-12/12-1/02.png) */}
+
+Em seguida precisamos ir na provedora onde compramos o domínio, e atualizamos o campo DNS de lá para apontar para o servidor DNS da Vercel
+
+{/* ![](/img/dia-12/12-1/03.png) */}
+
+Então primeiro vamos na aba “Domains” da Vercel e clicamos em “Add”
+
+{/* ![](/img/dia-12/12-1/04.png) */}
+
+Selecione qual projeto vc quer vincular o domínio
+
+{/* ![](/img/dia-12/12-1/05.png) */}
+
+Insira o nome do domínio
+
+{/* ![](/img/dia-12/12-1/06.png) */}
+
+Show! Agora o novo domínio foi adicionado na nossa lista. Agora precisamos pedir ao respectivo provedor (registro.br) onde o domínio foi comprado, para apontar para  vercel
+
+{/* ![](/img/dia-12/12-1/07.png) */}
+
+### Mas atenção
+
+a ) Ter um servidor autoritativo externo e fazer a vercel aceitar o host do domínio dentro da própria infraestrutura dela
+
+👆 isso é uma coisa
+
+👇 isso é outra coisa
+
+b ) pedir para vercel ser um servidor autoritativo
+
+Veja: nessa tela a vercel tá assumindo que seu servidor autoritativo está em outro lugar, e recomendando vc a colocar nele (neste outro lugar) um “A” record que aponte diretamente para o IP do servidor da vercel.
+
+{/* ![](/img/dia-12/12-1/08.png) */}
+
+Esse “A” é uma abreviação de “Adress”, e é um tipo de registro DNS que diz qual o endereço (IP final) do servidor, e é justamente essa informação que pode voltar e chegar no seu computador para ele acessar e se conectar diretamente
+
+{/* ![](/img/dia-12/12-1/09.png) */}
+
+O que confunde é que no [registro.br](http://registro.br) (provedor desse caso) precisamos de 2 servidores autoritativos
+
+{/* ![](/img/dia-12/12-1/10.png) */}
+
+Se o [registro.br](http://registro.br) precisa sempre de 2 endereços…
+
+{/* ![](/img/dia-12/12-1/11.png) */}
+
+… mas a vercel está recomendando apenas 1 endereço de IP… como se resolve isso?
+
+{/* ![](/img/dia-12/12-1/12.png) */}
+
+A verceu entendeu tudo errado:
+
+✅ A vercel é o servidor web acessível pelo IP 76.76.21.21
+
+❌ Nosso servidor autoritarivo é externo à infra dela (não configuramos nenhum servidor autoritativo)
+
+❌ E ainda que esse suposto servidor autoritativo possuí um “A record” apontando para o IP da vercel
+
+{/* ![](/img/dia-12/12-1/13.png) */}
+
+Na realidade, o que nós queremos é:
+
+✅ Que a vercel se torne o servidor autoritativo
+
+✅ Que ela nos entregue 2 endereços desse servidor DNS
+
+✅ Usar esses endereços no provedor (registro.br)
+
+Para isso, precisamos escolher a opção ao lado “or Nameservers”
+
+{/* ![](/img/dia-12/12-1/14.png) */}
+
+Ao clicar em enable ela já identifica quais os nameserver atuais e recomenda a troca para os da própria vercel
+
+{/* ![](/img/dia-12/12-1/15.png) */}
+
+O que acabamos de fazer foi
+
+1. Usar o servidor da vercel como autoritativo (em vermelho)
+2. Pedir para o registrador/provedor atualizar o DNS (em vermelho)
+
+{/* ![](/img/dia-12/12-1/16.png) */}
+
+Agora devemos aguardar essa atualização se propagar até o TLD, e o cache global expirar
+
+{/* ![](/img/dia-12/12-1/17.png) */}
+
+Podemos checar esse processo no [DNS Propagation Checker - Global DNS Testing Tool](https://www.whatsmydns.net/)
+
+{/* ![](/img/dia-12/12-1/18.png) */}
+
+{/* ![](/img/dia-12/12-1/19.png) */}
+
+A vercel tb envia um e-mail confirmando
+
+{/* ![](/img/dia-12/12-1/20.png) */}
+
+E no site tambem
+
+{/* ![](/img/dia-12/12-1/21.png) */}
+
+### Funcionou! Estamos no ar!
+
+{/* ![](/img/dia-12/12-1/22.png) */}
+
+Além de centralizar as configurações do nosso projeto em um lugar só, a Vercel facilita algumas coisas para a gente, como a inserção automática de registros DNS para o domínio ou subdomínios criados. Outros benefícios podem ser conferidos aqui [Working with nameservers](https://vercel.com/docs/domains/working-with-nameservers#benefits-of-using-vercel-nameservers)
+
+---
+
+### Opção de nameservers não aparece na vercel
+
+Matheus, buscando pelo mesmo problema que você relatou no [fórum de ajuda da Vercel](https://vercel.community/), eu descobri o seguinte:
+
+- Essa situação ocorre quando um outro usuário inseriu o domínio que você registrou na conta dele da Vercel. Então, mesmo que você seja o dono do domínio, para a Vercel a titularidade dele pertence a outra pessoa. O que é estranho, porque eles oferecem a opção de verificar a posse através do record `TXT`. Mas mesmo verificando, a opção de usar o nameserver deles fica desabilitada por conta do domínio estar associado à outra conta dentro da plataforma.
+- Nos dois tópicos que eu encontrei, a solução proposta pelo time de suporte da Vercel foi inserir um outro registro `TXT` no servidor autoritativo para que eles pudessem transferir a titularidade do domínio para o verdadeiro dono. Para isso você precisaria abrir um novo tópico na plataforma de suporte deles, e eles vão lhe orientar como proceder. Infelizmente, esse processo só é feito em inglês.
+
+Agora, caso você ache muito custoso realizar esse processo de transferência, você pode permanecer com o servidor autoritativo que o `Registro.br` fornece sem problema algum. 🤝
+
+#### Referências
+
+- [https://vercel.community/t/i-cant-find-the-name-server-option-on-my-domain-setting-dashbaord/4230](https://vercel.community/t/i-cant-find-the-name-server-option-on-my-domain-setting-dashbaord/4230)
+- [https://vercel.community/t/bug-with-the-vercel-nameservers/4044](https://vercel.community/t/bug-with-the-vercel-nameservers/4044)

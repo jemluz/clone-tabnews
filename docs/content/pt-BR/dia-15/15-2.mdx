@@ -1,0 +1,120 @@
+---
+title: "Criar um teste de teste"
+order: "15.2"
+lang: pt-BR
+translationStatus: original
+date: 2025-11-12
+notionId: 2a9cf904-83bd-8086-916d-f400d1d1fc12
+---
+
+# Criar um teste de teste
+
+Nessa aula vamos completar a segunda tarefa da issue de Testes automatizados, e começar a aprender sobre o fluxo de trabalho usando o Test Runner da aula anterior para que ele nos diga se está “quente” ou “frio” e se aproximando do objetivo
+
+{/* ![](/img/dia-15/15-2/01.png) */}
+
+### Mas qual o objetivo?
+
+Ótimo que você perguntou! Aqui nós precisamos ativar o modo “arqueiro”
+
+{/* ![](/img/dia-15/15-2/02.png) */}
+
+E todo arqueiro precisa de um alvo
+
+{/* ![](/img/dia-15/15-2/03.png) */}
+
+Mas diferente da vida real, onde primeiro você coloca o alvo e depois atira a flecha…. na programação, e principalmente em testes automatizados, às vezes você pode fazer o contrário:
+
+primeiro atira a flecha e depois sai correndo que nem um doido para colocar o alvo
+
+Para fins educacionais, nosso alvo será programar uma calculadora
+
+{/* ![](/img/dia-15/15-2/04.png) */}
+
+Você deve usar o modo watch para se guiar
+
+{/* ![](/img/dia-15/15-2/05.png) */}
+
+O jest segue reclamando que não encontrou arquivos de teste, então vamos criar isso
+
+{/* ![](/img/dia-15/15-2/06.png) */}
+
+Após criar a pasta `/tests` , adicione o nome `.test` antes da extensão final do arquivo para indicar que se trata de um arquivo de teste.
+
+Esse arquivo `calculadora.test.js` é como a flecha, ele não é a feature concreta e sim apenas o teste que sera utilizado para validar ela
+
+{/* ![](/img/dia-15/15-2/07.png) */}
+
+A partir desse momento você já consegue ver o Jest reclamar, indicando que precisamos ter ao menos 1 teste.
+
+{/* ![](/img/dia-15/15-2/08.png) */}
+
+{/* ![](/img/dia-15/15-2/09.png) */}
+
+Não estranhe esses erros, na verdade eu espero que você se acostume a lidar com erros aparecendo a todo momento.
+
+O Test Runner no modo watch precisa ter a caracteristica de se auto recuperar e continuar de onde você parou, como se nada tivesse acontecido.
+
+{/* ![](/img/dia-15/15-2/10.png) */}
+
+Se não for assim o seu ambiente tá frágil demais para se desenvolver. Eu já trabalhei com sistemas que os planetas precisavam estar alinhados para ele subir, e qualquer probleminha já te levava para um estado difícil e demorado de se sair.
+
+Uma das minha preocupações no início do tabnews era deixá-lo um sistema fácil de configurar e subir em qualquer situação.
+
+Voltando aos testes, criamos o primeiro teste sem nada.
+
+{/* ![](/img/dia-15/15-2/11.png) */}
+
+Se eu criar mais um teste e colocar consoles.log dentro ele irá executar os mesmos.
+
+{/* ![](/img/dia-15/15-2/12.png) */}
+
+E tb irá sinalizar quais testes foram executados
+
+{/* ![](/img/dia-15/15-2/13.png) */}
+
+Mas para ser sincero esses testes não estão “testando” nada, isso pq eles ainda não esperam que aconteça nada.
+
+Aliás, você lembra da palavra espera? Que bom porque uma das mecânicas mais importantes dos testes automatizados é o expect!
+
+É com ele que iremos definir a expectativa em relação a um comportamento do seu sistema.
+
+{/* ![](/img/dia-15/15-2/14.png) */}
+
+Então vamos recomeçar!
+
+{/* ![](/img/dia-15/15-2/15.png) */}
+
+Apesar de usar expect agora, e do teste passar, ainda não vale de muita coisa, pois o valor está hard coded.
+
+Quando escrevemos um teste 100% hardcoded, o cenário se torna exageradamente controlado. Não há espaço para o caos!
+
+O certo é termos de um lado o valor dinâmico e do outro o valor esperado.
+
+{/* ![](/img/dia-15/15-2/16.png) */}
+
+{/* ![](/img/dia-15/15-2/17.png) */}
+
+{/* ![](/img/dia-15/15-2/18.png) */}
+
+Nos casos acima, falhar indica que está tudo certo. Isso pq
+
+- “banana” nunca será igual a “maçã”
+- 1 nunca será igual a 2
+
+O mais importante é entender a estrutura `expect(2)``.toBe(1)`
+
+- No `expect()` é onde costumamos colocar o **valor dinâmico**, que provavelmente virá de uma variável
+- No `toBe()` é onde costumamos colocar o valor **hardcoded**
+
+No terminal o **Expected** corresponde ao `toBe()`, e o **Received** corresponde ao `expected()`
+
+{/* ![](/img/dia-15/15-2/19.png) */}
+
+Não iremos commitar esses testes já que foi só para fins educacionais, então já podemos marcar a tarefa como concluída.
+
+{/* ![](/img/dia-15/15-2/20.png) */}
+
+Na próxima aula vamos aprofundar nesses conceitos de hardcoded e softcoded
+
+{/* ![](/img/dia-15/15-2/21.png) */}

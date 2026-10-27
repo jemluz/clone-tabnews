@@ -1,0 +1,112 @@
+---
+title: "Resolução de DNS - lvl 1"
+order: "11"
+lang: pt-BR
+translationStatus: original
+date: 2025-09-17
+notionId: 271cf904-83bd-80ee-95bb-c48623202dfd
+---
+
+# Resolução de DNS - lvl 1
+
+No momento que vc entender DNS, irá domar a principal porta de entrada pro seu site/serviço.
+
+{/* ![](/img/dia-11/index/01.png) */}
+
+E vai poder agir com frieza quando você precisar mover a aplicação de um servidor para outro, ou pra quando vc precisar colocar um Cloudflare na frente para aguentar os ataques de negação que estão tentando derrubar o seu sistema.
+
+Além de adicionar certas informações dentro do seu domínio que vão certificar que você é o dono dele e vão até aumentar a taxa de entrega dos e-mails que a sua aplicação envia, como e-mails de ativação de cadastro ou recuperação de senha.
+
+E se você errar nisso alguns provedores vão recusar por completo os e-mails enviados pela sua aplicação!
+
+Se prepare, pois esse é um desafio com 2 níveis de dificuldade
+
+{/* ![](/img/dia-11/index/02.png) */}
+
+Seja bem vindo ao primeiro nível
+
+{/* ![](/img/dia-11/index/03.png) */}
+
+## Domínios são uma mentira
+
+Todos endereços que digitamos na barra de url do navegador não passam de apelidos, não são endereços de verdade.
+
+{/* ![](/img/dia-11/index/04.png) */}
+
+{/* ![](/img/dia-11/index/05.png) */}
+
+Um endereço real é sempre um IP (internet protocol).
+
+Cada computador e servidor no mundo que está conectado à internet possui um IP único, ou melhor, cada ponto de conexão à rede internet possui esse IP único.
+
+Imagine como se fosse o endereço e o número do local onde você mora.
+
+{/* ![](/img/dia-11/index/06.png) */}
+
+E esse endereçamento é super importante porque se do seu computador, e você deseja pedir algo para outro computador/servidor que está do outro lado do mundo, a única forma de chegar nele é sabendo qual o endereço dele (que é o IP dele)
+
+Então toda vez que o seu computador transmitir pacotes de informação pela internet, por mais simples que sejam, por exemplo:
+
+> “tabnews, quero acessar a sua home! me manda ela”
+
+Isso é um pedido que é transmitido pela internet, então seu computador manda esse pedido dentro de pacote que irá transitar pelas ruas da internet.
+
+E para que ele não se perca nesse emaranhado de rotas online, é carimbado nele o destino final (IP), e os roteadores que estão no meio do caminho conferem esse destino para encaminhar esse pacote para a melhor rota possível até ele conseguir chegar no destino final.
+
+No caso do [tabnews.com.br](http://tabnews.com.br) a Home tá em algum lugar da web
+
+{/* ![](/img/dia-11/index/07.png) */}
+
+Mas pro seu computador baixar o Home do tabnews dentro dele, ele não tá baixando nada pelo “tabnews.com.br”.
+
+Um computador não se conecta com outro por esse tipo de endereço, ele só vai conseguir se conectar pelo IP.
+
+{/* ![](/img/dia-11/index/08.png) */}
+
+Mas a pergunta que fica é: como o seu computador conhece o endereço de IP do tabnews?
+
+## E essa é a maravilha do DNS
+
+E o seu trabalho principal é conseguir converter um domínio no seu respectivo endereço de IP final.
+
+{/* ![](/img/dia-11/index/09.png) */}
+
+É como se o DNS fosse um grande banco de dados que relaciona os domínios aos seus IPs
+
+{/* ![](/img/dia-11/index/10.png) */}
+
+Então na pratica, ao digitar o domínio na url do navegador e apertar Enter, esse pedido sai do seu computador e vai até o servidor DNS que troca esse dominio que você digitou pelo IP do servidor desejado.
+
+E daí as novas requisições vão direto para o IP do servidor final
+
+Ta certo mas ta errado pera
+
+1. Primeiro vc digitou no compudador o endereço
+2. Em seguida esse endereço é resolvido pelo DNS para um IP
+3. Esse IP é usado para chegar no servidor final
+
+{/* ![](/img/dia-11/index/11.png) */}
+
+Na real, a ordem tá certa, mas não é o servidor do DNS quem acessa o servidor final, e o seu computador precisa dar 1 passo para trás para poder dar 2 passos para frente
+
+{/* ![](/img/dia-11/index/12.png) */}
+
+1. Primeiro vc digitou no compudador o endereço
+2. Em seguida esse endereço é resolvido pelo DNS para um IP
+3. Esse IP é entregue para o seu computador, e então ele é usado para chegar no servidor final
+
+{/* ![](/img/dia-11/index/13.png) */}
+
+Literalmente 1 passo para trás, para dar 2 passos para frente
+
+{/* ![](/img/dia-11/index/14.png) */}
+
+O DNS existe pelo mesmo motivo que temos lista de contatos: não vamos decorar uma porrada de sequencias númericas de cada site que acessamos, é muito mais fácil nomear aquele número.
+
+## E o desafio já começou tá?
+
+Você tem que encontrar por conta própria o endereço do nível 2.
+
+E lembra, estamos falando sobre DNS, sobre o endereço que é digitado ali no seu navegador
+
+{/* ![](/img/dia-11/index/15.png) */}

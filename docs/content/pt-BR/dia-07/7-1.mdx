@@ -1,0 +1,88 @@
+---
+title: "Hospedagem e deploy"
+order: "7.1"
+lang: pt-BR
+translationStatus: original
+date: 2025-07-15
+notionId: 231cf904-83bd-8015-82fb-dfb64c9fe223
+---
+
+# Hospedagem e deploy
+
+Hospedar = oferecer abrigo
+
+{/* ![](/img/dia-07/7-1/01.png) */}
+
+É o que serviços de hospedagem fazem :D
+
+E é isso que os serviço de hospedagem de sites fazem (oferecem abrigo aos arquivos do nosso projeto)
+
+{/* ![](/img/dia-07/7-1/02.png) */}
+
+Assim como as tecnologias de versionamento e outras da web, a hospedagem também teve sua evolução histórica.
+
+Inicialmente as pessoas hospedavam seus sites nos seus próprios computadores pessoais,  que costumavam aguentar poucos acessos simultâneos.
+
+E quando alguém desligava sem querer ou faltava luz o site saia do ar : P
+
+{/* ![](/img/dia-07/7-1/03.png) */}
+
+Até que esse trabalho foi delegado a computadores especificos (servidores) para isso. Computadores que nunca eram desligados, com redudancia de internet e de luz e eram mais potentes  para aguentar mais acessos.
+
+{/* ![](/img/dia-07/7-1/04.png) */}
+
+Porém também era necessário realizar o processo de transferir os arquivos do projeto para esse computador a cada nova alteração. Você ai no fundo! O que disse? Deploy? Exatamente.
+
+E é isso que fazemos quando vamos colocar nosso site no ar (ou uma nova versão dele), que pode ser entendido como implantar, mas a maioria das pessoas usam o termo deploy mesmo.
+
+{/* ![](/img/dia-07/7-1/05.png) */}
+
+Voltando ao segundo estágio, aqui o deploy costumava ser chato, pois levava tempo analisar os arquivos com calma para selecionar quem foi atualizado e seria enviado ao servidor via FTP. Afinal, enviar todos arquivos numa internet discada toda vez estava fora de cogitação.
+
+{/* ![](/img/dia-07/7-1/06.png) */}
+
+E de modo similar isso era igualmente arriscado como fazer o versionamento manualmente, você devia ter muito cuidado ao selecionar os arquivos que seriam enviados.
+
+{/* ![](/img/dia-07/7-1/07.png) */}
+
+E nesse ponto o ser humano sempre surpreende, conseguindo evoluir até pra trás: como dava muito trabalho selecionar os arquivos do computador pessoal para o servidor… vamos editar diretamente do servidor hahah, direto no ambiente de produção!
+
+{/* ![](/img/dia-07/7-1/08.png) */}
+
+Já que por vezes esse ambiente possuia particularidades que o ambiente de desenvolvimento local não conseguia replicar, o que atrapalhava a correção de certas coisas. MAS AI para sincronizar de volta pro local era problema…
+
+você se conectava através do windows server daquela maquina para mexer nos arquivos diretamente lá, ou por outro protocolo chamado SSH (no caso linux)
+
+{/* ![](/img/dia-07/7-1/09.png) */}
+
+Essa foi uma fase muito obscura do devops
+
+- Os ambientes local e remoto eram TOTALMENTE diferentes na maioria dos casos
+- Isso gerava bugs exclusivos do servidor enquando na máquina rodava perfeitamente
+- Por isso fazia muito mais sentido debugar direto no servidor
+- E no fim das contas vc tinha uma versão do arquivo no servidor, uma outra versão com um dev, e uma outra versão com outro dev e por ai vai
+- Nada fazia sentido, tudo era um completo caos
+
+Dai veio o git e resolveram esse problema colocando o git tanto no servidor quanto nas maquinas locais.
+
+{/* ![](/img/dia-07/7-1/10.png) */}
+
+E hoje chegamos no modelo de CI + Build, onde um servidor CI realiza vários testes com o código, e se passar, o servidor seguinte atualiza a versão hospedada qie será entregue para os servidores que fazem a distribuição na internet
+
+{/* ![](/img/dia-07/7-1/11.png) */}
+
+Agora vamos configurar nosso “robozinho” CI para que ao fazer **push** no projeto, automaticamente ele entre em uma esteira de CI, Build e Deploy.
+
+{/* ![](/img/dia-07/7-1/12.png) */}
+
+{/* ![](/img/dia-07/7-1/13.png) */}
+
+Para isso vamos usar a vercel
+
+{/* ![](/img/dia-07/7-1/14.png) */}
+
+### Principle of Least Privilege
+
+Na hora de vincular sua conta na vercel, lembre-se desse princípio.
+
+Sempre forneça **o mínimo de permissões possíveis** a qualquer entidade que terá acesso ao seu sistema. Isso ira ajudar a **prevenir ataques**, pois **toda permissão concedida** é um **vetor de invasão em potencial**.

@@ -1,0 +1,64 @@
+---
+title: "Git Diff e Amend | Viagem no tempo"
+order: "5.3"
+lang: pt-BR
+translationStatus: original
+date: 2025-07-02
+notionId: 224cf904-83bd-80c3-90fa-ca99ffadcd2b
+---
+
+# Git Diff e Amend | Viagem no tempo
+
+Já viajou no tempo? Não?
+
+Pois saiba que com git podemos viajar no tempo e mudar o passado do nosso projeto, alterando para sempre o seu historico.
+
+{/* ![](/img/dia-05/5-3/01.png) */}
+
+Com o comando `git —amend` podemos sobreescrever um commit anterior
+
+{/* ![](/img/dia-05/5-3/02.png) */}
+
+O git gerencia o status de cada arquivo baseando-se na comparação entre o Work Directory e o que foi armazenado no seu banco de versionamento.
+
+{/* ![](/img/dia-05/5-3/03.png) */}
+
+{/* ![](/img/dia-05/5-3/04.png) */}
+
+Podemos pedir pro git calcular essa diferença com o comando `git diff`
+
+{/* ![](/img/dia-05/5-3/05.png) */}
+
+{/* ![](/img/dia-05/5-3/06.png) */}
+
+Newline é um caractere invisível e se apresenta toda vez que damos “Enter” em uma linha
+
+{/* ![](/img/dia-05/5-3/07.png) */}
+
+{/* ![](/img/dia-05/5-3/08.png) */}
+
+Devemos manter sempre um newline ao final de cada arquivo, essa é uma convenção que vem do unix.
+
+Na realidade você pode encarar o new line como um caractere que indica o final de uma linha, ao invés de uma nova linha. Dessa forma se o ultimo caractere de um arquivo é o newline, significa que o arquivo terminou por completo
+
+{/* ![](/img/dia-05/5-3/09.png) */}
+
+{/* ![](/img/dia-05/5-3/10.png) */}
+
+Lembra do `--ammend` ? Vamos usar ele para sobreescrever o `.gitignore`
+
+{/* ![](/img/dia-05/5-3/11.png) */}
+
+{/* ![](/img/dia-05/5-3/12.png) */}
+
+Commits são imutáveis, o git nunca altera um commit. Ele cria um novo e substitui o commit emendado.
+
+{/* ![](/img/dia-05/5-3/13.png) */}
+
+{/* ![](/img/dia-05/5-3/14.png) */}
+
+O git pegou esse novo commit que você fez, fez uma viagem no tempo e alterou o histórico original do projeto.
+
+{/* ![](/img/dia-05/5-3/15.png) */}
+
+{/* ![](/img/dia-05/5-3/16.png) */}

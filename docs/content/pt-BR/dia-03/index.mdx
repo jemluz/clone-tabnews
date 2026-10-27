@@ -1,0 +1,97 @@
+---
+title: "A fundação | node.js e .nvmrc"
+order: "3"
+lang: pt-BR
+translationStatus: original
+date: 2025-02-11
+favorite: true
+notionId: 197cf904-83bd-80d0-b448-d5b8c509c32c
+---
+
+import { Callout } from "nextra/components";
+
+# A fundação | node.js e .nvmrc
+
+### A fundação | E a ideia de reutilização da cultura OpenSource
+
+> "Se você deseja criar uma torta de maçã do zero, você primeiro, deve criar o universo” - Carl Sagan
+
+{/* ![](/img/dia-03/index/01.png) */}
+
+{/* ![](/img/dia-03/index/02.png) */}
+
+Na programação a vida é assim, **nada se cria do zero**, você sempre vai construir suas aplicações em cima de coisas que **já foram criadas por ourtras pessoas**.
+
+Afinal, se você fosse criar um programa do absoluto zero, isso incluiria criar a linguagem, a IDE, o sistema operacional, o hardware, sua casa/seu trabalho onde vai colocar o computador, seu bairro, cidade, país, planeta terra, sistema solar, galáxia e finalmente universo
+
+#### kkkkkkkkkk que trabalho desgraçado, né não?  😮‍💨Melhor desistir da ideia 😅
+
+Por isso, **desenvolva a habilidade de se sentir confortável ao reaproveitar tudo** isso que já foi criado e já está ao seu alcance.
+
+<Callout emoji="👌">
+**Desapegue** da ideia de criar algo original, e **se apegue** ao processo de **entender a lógica por trás da criação de cada coisa.**
+</Callout>
+
+#### Tudo isso para apresentar o Node.js e o npm
+
+Enquanto o **Node.js** revolucionou a maneira como desenvolvemos aplicativos da web, permitindo que os desenvolvedores usem **JavaScript tanto no frontend quanto no backend**, promovendo um desenvolvimento mais coeso e eficiente…
+
+…o **npm** nada mais é do que o **maior repositório de pacotes de código aberto do mundo**. Isso facilita a adição de funcionalidades a um projeto Node.js por meio do **uso de** **bibliotecas e módulos de terceiros**.
+
+#### Node.js: O cérebro por trás da reutilização de tudo o que torna um projeto possível.
+
+(**que são as bibliotecas** caso não tenha ficado claro 😁)
+
+{/* ![](/img/dia-03/index/03.png) */}
+
+### Definindo uma versão node para o seu projeto
+
+Quando falamos em projetos com **node.js** um dos problemas que certamente iremos enfrentar são sobre `versões`.
+
+Por isso desde o inicio do projeto temos que deixar claro qual versão do node é compatível/recomendada para seu desenvolvimento.
+
+O **nvm (Node Version Manager)** é uma ferramenta que permite lidarmos com diferentes versões do node na nossa maquina com facilidade.
+
+Queremos o **node versão** **lts/hydrogen**
+
+{/* ![](/img/dia-03/index/04.png) */}
+
+Vamos utilizar ele no terminal para rodar o `nvm install lts/hydrogen` e usar essa versão no nosso ambiente de desenvolvimento. E em seguida usar o `nvm alias default lst/hydrogen` para definir essa versão como padrão.
+
+{/* ![](/img/dia-03/index/05.png) */}
+
+{/* ![](/img/dia-03/index/06.png) */}
+
+{/* ![](/img/dia-03/index/07.png) */}
+
+Dessa forma a **versão do node foi padronizada para o meu ambiente local.**
+
+Mas ainda precisamos padronizar para que outros devs que eventualmente acessem o repositório saibam qual a versão ideal…
+
+### Configurando o .nvmrc
+
+Para isso iremos utilizar o `.nvmrc`, um arquivo que fica dentro do nosso projeto mantendo a **informação de qual versão do node deve ser utilizada.**
+
+{/* ![](/img/dia-03/index/08.png) */}
+
+O arquivo deve conter **apenas uma linha com a versão do node desejada**.
+
+Ao rodar `nvm install` ou `nvm use` no terminal ele irá buscar pelo `.nvmrc`, e instalar a versão do arquivo, se houver um.
+
+{/* ![](/img/dia-03/index/09.png) */}
+
+{/* ![](/img/dia-03/index/10.png) */}
+
+#### Sufixo rc = Run Commands
+
+Este sufixo é tradicionalmente usado em **arquivos de configuração** para indicar que eles contêm configurações ou comandos que **devem ser executados ou lidos por um programa específico**.
+
+- `.nvmrc` → será lido pelo **nvm**
+- `.bashrc` → será lido pelo **bash**
+- `.npmrc` → será lido pelo **npm**
+
+{/* ![](/img/dia-03/index/11.png) */}
+
+Voltando do futuro para dizer que funciona mesmo
+
+{/* ![](/img/dia-03/index/12.png) */}

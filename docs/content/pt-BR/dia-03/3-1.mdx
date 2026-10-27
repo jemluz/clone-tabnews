@@ -1,0 +1,99 @@
+---
+title: "A primeira parede"
+order: "3.1"
+lang: pt-BR
+translationStatus: original
+date: 2025-06-24
+notionId: 21ccf904-83bd-80c8-a982-e60da6e6243d
+---
+
+# A primeira parede
+
+### Links
+
+Site do framework  →  [Next.js by Vercel - The React Framework](https://nextjs.org/)
+
+Empresa por trás →  [Vercel: Build and deploy the best web experiences with the Frontend Cloud](https://vercel.com/)
+
+---
+
+### A primeira parede
+
+Se sua casa é uma aplicação web, e na aula anterior construímos a fundação dela com o `.nvmrc`, podemos dizer que as paredes da casa podem ser feitas pelo **Next**.
+
+{/* ![](/img/dia-03/3-1/01.png) */}
+
+O **Next.js** é um framwork para desenvolvimento web, um de vários que existem.
+
+E nessas horas iniciais é comum ficar indeciso sobre qual escolher, e até sofrer de:
+
+{/* ![](/img/dia-03/3-1/02.png) */}
+
+{/* ![](/img/dia-03/3-1/03.png) */}
+
+Mas não se preocupe, ele é um framework que **vai influenciar pouco** no seu modo de construir um site, ele não vai ditar quais móveis devem ir dentro da casa (quem vai fazer isso é o react rs), ou quantos cômodos ela deve ter por exemplo.
+
+Ele vai se limitar a fornecer a estrutura que irá abrigar sua aplicação, independente (ou muito pouco dependente pelo menos) de quem ela seja.
+
+#### Quando o conflito de interesse é uma delicinha | Next.js
+
+Com o **Next**, tanto construir a alvenaria (paredes) quanto inaugurar a obra (hospedar o site) nunca foi tão fácil, isso porquê a empresa que é responsável pelo **Next**: a **Vercel,** também uma host de aplicações web.
+
+{/* ![](/img/dia-03/3-1/04.png) */}
+
+No fim das contas utilizar o **Next** te garante uma das melhores integrações entre **framework** **e web host** já vistas. Já que ambos são da mesma empresa.
+
+{/* ![](/img/dia-03/3-1/05.png) */}
+
+### A lista de materiais | package.json
+
+Bom, mas antes de construir uma parede, precisamos de tijolos, cimento, e ferramentas, correto?
+
+Pois bem, ao longo da sua jornada como dev empreiteiro, você precisará de uma lista de materiais bem definida antes de iniciar qualquer etapa da construção.
+
+E é exatamente para isso que utilizamos o **package.json**.
+
+O **package.json** é um manifesto que vai **reunir informações importantes** sobre a sua aplicação.
+
+{/* ![](/img/dia-03/3-1/06.png) */}
+
+E uma dessas informações é nada mais nada menos do que a lista de materiais (**dependências**) do projeto, nela registramos as **bibliotecas/módulos/recursos necessários para construir e para manter** o sistema funcionando.
+
+E ainda especificando qual tipo de cada um (**sua versão**) para **evitar problemas de compatibilidade** no futuro.
+
+{/* ![](/img/dia-03/3-1/07.png) */}
+
+Para criar o **package.json**, basta rodar o comando `npm init` e preencher os dados no terminal inicialmente. Após isso, todo registro de novo item na lista de materiais (**dependências**) deve ser feito com o comando `npm install`.
+
+{/* ![](/img/dia-03/3-1/08.png) */}
+
+Ele pede algumas informações, vamos deixar tudo como **padrão** exceto a ultima sobre licença (botamos MIT).
+
+{/* ![](/img/dia-03/3-1/09.png) */}
+
+No fim ele te mostra um **resumo** para você revisar antes da criação ser concluída.
+
+{/* ![](/img/dia-03/3-1/10.png) */}
+
+### Agora vamos instalar o Next.js
+
+{/* ![](/img/dia-03/3-1/11.png) */}
+
+E por fim o **React**
+
+{/* ![](/img/dia-03/3-1/12.png) */}
+
+Mas aí tem uma coisa, o **React** é uma hydra. Ele possuí **vários renderizadores**.
+
+- Você pode renderizar interfaces web
+- Interfaces para terminais
+- Interfaces para TVs
+- Interfaces mobile
+- Renderizações 3D
+- E muitos outros
+
+… e ai como nós queremos construir o tabnews, vamos usar/instalar o **renderizador web** `react-dom`
+
+{/* ![](/img/dia-03/3-1/13.png) */}
+
+{/* ![](/img/dia-03/3-1/14.png) */}

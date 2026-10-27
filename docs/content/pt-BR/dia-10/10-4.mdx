@@ -1,0 +1,22 @@
+---
+title: "Configurar o Prettier Ignore"
+order: "10.4"
+lang: pt-BR
+translationStatus: original
+date: 2025-09-15
+notionId: 26fcf904-83bd-8050-9e85-d3485cb46f45
+---
+
+# Configurar o Prettier Ignore
+
+Se vc rodar o servidor e executar um dos scripts lint, teremos esse problema: o prettier vai ficar atento à pasta .next
+
+{/* ![](/img/dia-10/10-4/01.png) */}
+
+Vamos sorrateiramente adicionar mais uma task na issue de estilização
+
+{/* ![](/img/dia-10/10-4/02.png) */}
+
+Para resolver vamos criar um arquivo `.prettierignore` na raiz do projeto, para que o prettier possa ignorar a pasta next
+
+{/* ![](/img/dia-10/10-4/03.png) */}

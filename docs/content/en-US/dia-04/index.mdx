@@ -1,0 +1,121 @@
+---
+title: "Protocols & run project localy"
+order: "4"
+lang: en-US
+translationStatus: manual
+date: 2025-06-26
+notionId: 21ecf904-83bd-8081-846f-cd2943d07e22
+---
+
+# Protocols & run project localy
+
+### Links
+
+Um artigo no medium para se aprofundar mais em protocolos → [HTTP: Como Cliques se Transformam em Conexões · PauloCod](https://www.tabnews.com.br/PauloCod/http-como-cliques-se-transformam-em-conexoes)
+
+Uma playlist top em inglês sobre protocolos →  [FREE CCNA 200-301 // Complete Course // NetworkChuck 2023](https://www.youtube.com/playlist?list=PLIhvC56v63IJVXv0GJcl9vO5Z6znCVb1P)
+
+Vídeo mostrando a diferença entre UDP e TCP com altas latências →  [HTML5 Games - UDP vs TCP](https://www.youtube.com/watch?v=ZEEBsq3eQmg)
+
+---
+
+Nosso objetivo agora é levantar o sistema. Mas…
+
+{/* ![](/img/dia-04/index/01.png) */}
+
+Para responder essa pergunta, precisamos falar sobre **PROTOCOLOS**
+
+{/* ![](/img/dia-04/index/02.png) */}
+
+Abaixo alguns exemplo de protocolos comuns:
+
+{/* ![](/img/dia-04/index/03.png) */}
+
+No fim das contas, protocolos são acordos/padrões que regem a transferência de informações.
+
+### Entendendo protocolos com o clássico telefone sem fio
+
+{/* ![](/img/dia-04/index/04.png) */}
+
+{/* ![](/img/dia-04/index/05.png) */}
+
+O telefone sem fio é uma boa analogia para entender os protocolos. Onde **a informação precisa ser transmitida mediante certas regras**:
+
+- Uma pessoa ao lado da outra.
+- Uma única mensagem deve ser transmitida.
+- A mensagem deve percorrer uma pessoa(proxy) por vez, através de sussurros.
+- A mensagem deve percorrer todas as pessoas até chegar na ultima.
+- A ultima pessoa deve repetir a mensagem(payload) em voz alta para as demais validarem.
+
+A graça do telefone sem fio é ser um protocolo com péssimo tratamento de erro, o que faz que inevitavelmente a informação inicial se perca no caminho.
+
+Não é incomum a mensagem final ser bem diferente da inicial no jogo do telefone sem fio, e nos protocolos de comunicação digitais isso também acontece. **Perda de dados é algo normal.**
+
+O `protocolo TPC` possui um método de verificação própria para garantir que dados não sejam perdidos, emitindo um **alerta de erro** entre as partes e fazendo que elas **repitam a transmissão** até que nenhum erro seja mais transmitido.
+
+{/* ![](/img/dia-04/index/06.png) */}
+
+### Combo de protocolos Burgão + Fritas + Refri
+
+**Os protocolos podem se aninhar serem transmitidos um dentro do outro**, para proporcionar comunicações mais complexas.
+
+{/* ![](/img/dia-04/index/07.png) */}
+
+{/* ![](/img/dia-04/index/08.png) */}
+
+Como por exemplo:
+
+- Utilizamos o `protocolo HTTP` para transferir as informações web entre cliente e servidor (tipo duas residências diferentes)
+- Utilizamos o `protocolo TCP` para evitar que os dados transferidos pelo `protocolo HTTP` se percam (tipo uma rota mais segura, evitando acidentes)
+- Utilizamos o `protocolo IP` (Internet Protocol) para viabilizar esses prover o ambiente onde os dados irão trafegar (tipo as ruas/pistas/ avenidas)
+
+### TCP e algumas curiosidades sobre protocolos
+
+Ao utilizar o `protocolo IP`, o `protocolo TCP` se torna opcional, como um seguro de carro: é mais custoso e dependendo do contexto não faz sentido pagar por ele.
+
+{/* ![](/img/dia-04/index/09.png) */}
+
+{/* ![](/img/dia-04/index/10.png) */}
+
+Exemplo**:**
+
+**Transmissão de vídeo (zoom)**
+
+- É um gasto **desnecessário**, se frames pontuais de vídeo forem perdidos ninguém vai morrer.
+- Na real é melhor perder o frame do que parar tudo para esperar ele sincronizar (que a essa altura já se tornou uma informação obsoleta, não iriamos parar uma conversa para ficar esperando a imagem perfeita)
+
+Nesse caso de chamadas de vídeo é mais comum a utilização do `protocolo UDP` (User Datagram Protocol) em que são tranferidos pedaços de informação autônomos, não dependentes entre eles.
+
+{/* ![](/img/dia-04/index/11.png) */}
+
+E ai quem faz o papel do `protocolo TCP` de validar a informação são os próprios humanos 😂 "alô? tá me ouvindo?" "oi. falhou aqui.”
+
+O `protocolo UDP` também é muito usado em jogos multiplayer, onde quando o jogador cai, ao recuperar a posição final dele é traçado uma sequência de posições intermediárias que fazem o boneco "ir saltando rapidamente" até onde ele está
+
+{/* ![](/img/dia-04/index/12.png) */}
+
+{/* ![](/img/dia-04/index/13.png) */}
+
+Vídeo mostrando a diferença entre UDP e TCP com altas latências →  [HTML5 Games - UDP vs TCP](https://www.youtube.com/watch?v=ZEEBsq3eQmg)
+
+### Chega de conversa vamos focar no que interessa
+
+{/* ![](/img/dia-04/index/14.png) */}
+
+Utilizaremos o `protocolo HTTP`, pois é com ele que o nosso servidor irá se comunicar e transmitir os dados das páginas.
+
+Que também é o protocolo utilizado pelo navegador para receber esses dados e ler esses dados de acordo com seus formatos, para no fim desenhar uma linda interface onde iremos jurar lealdade até o fim dos nossos dias.
+
+Vamos usar o comando `next dev` para rodar nosso servidor localmente
+
+{/* ![](/img/dia-04/index/15.png) */}
+
+Como não está instalado de forma global no sistema operacional, deu erro. Para isso precisamos usar um **script** no **package.json**, que sabe exatamente qual local onde a pasta next está instalada (node\_modules)
+
+Vamos chamar esse script de **”dev”** e atribuir a ele o comando `next dev`
+
+{/* ![](/img/dia-04/index/16.png) */}
+
+Agora podemos rodar o script usando `npm run dev`
+
+{/* ![](/img/dia-04/index/17.png) */}

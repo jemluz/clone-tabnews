@@ -1,0 +1,118 @@
+---
+title: "A maior briga no universo dos testes automatizados"
+order: "16"
+lang: pt-BR
+translationStatus: original
+date: 2025-11-17
+notionId: 2aecf904-83bd-80c9-95db-c83055d75cc7
+---
+
+# A maior briga no universo dos testes automatizados
+
+Nessa aula você vai ver porque testes automatizados sao tao importantes
+
+{/* ![](/img/dia-16/index/01.png) */}
+
+A base para esse conhecimento, vai estar dentro dessa issue de banco de dados
+
+{/* ![](/img/dia-16/index/02.png) */}
+
+Vamos ver como partes diferentes do sistema se encaixam, por exemplo: como a conexão do banco se relaciona com o endpoint da API e como se relaciona com os testes automatizados
+
+{/* ![](/img/dia-16/index/03.png) */}
+
+Para começar criaremos 3 tarefas nessa issue.
+
+{/* ![](/img/dia-16/index/04.png) */}
+
+E tudo que for construído aqui será reaproveitado mais pra frente, quando chegar a hora de fazer a status page.
+
+{/* ![](/img/dia-16/index/05.png) */}
+
+Na ultima tarefa teremos todas as peças prontas para serem encaixadas.
+
+Falando em encaixar uma peça na outra, eu me arriscaria dizer que esse encaixe é a parte mais importante de um software.
+
+{/* ![](/img/dia-16/index/06.png) */}
+
+Isso porque muitas vezes, as partes do seu sistema podem funcionar bem isoladamente, como foi no caso do model de calculadora. Mas quando chega o momento de integra-las, as coisas podem fugir do controle.
+
+{/* ![](/img/dia-16/index/07.png) */}
+
+E diferente de um quebra cabeça que não muda, as suas peças vão mudar. E as vezes essas mudanças quebram a integração.
+
+A boa notícia é que os testes automatizados vem pra ajudar nisso. Tanto para garantir os comportamentos das unidade, quanto das integrações entre as unidades
+
+{/* ![](/img/dia-16/index/08.png) */}
+
+A gente até já fez um desses tipos de teste, você saberia adivinhar qual?
+
+{/* ![](/img/dia-16/index/09.png) */}
+
+Foi o de unidade. Quando programamos o módulo calculadora, a função `somar` funciona por conta prória, ela não depende de nenhuma outra unidade do sistema.
+
+Inclusive não possuí dependencia com nenhuma outra camada da nossa infra como banco de dados, por exemplo.
+
+{/* ![](/img/dia-16/index/10.png) */}
+
+Podemos aproveitar e organizar melhor as pastas de testes, criando uma pasta `unit` para testes de unidades, e uma pasta `integration` para testes de integração
+
+{/* ![](/img/dia-16/index/11.png) */}
+
+Os testes de integração por sua vez, são testes que não se preocupam mais com o funcionamento isolado de uma unidade, e sim com a integração entre várias unidades ou camadas da sua aplicação.
+
+{/* ![](/img/dia-16/index/12.png) */}
+
+Eles existem porque, como no exemplo do quebra cabeça, você pode garantir que a peça (unidade) está funcionando, mas isso não garante que o quebra cabeça (sistema completo) está.
+
+Isso nos leva à alguns memes sobre testes unitários X testes de integração
+
+{/* ![](/img/dia-16/index/13.png) */}
+
+{/* ![](/img/dia-16/index/14.png) */}
+
+{/* ![](/img/dia-16/index/15.png) */}
+
+Em uma das tarefas da issue vamos fazer uma request em HTTP real, para fora do sistema, aguardar uma resposta, e em cima dessa resposta fazer uma verificação para saber se o resultado era esperado ou não
+
+{/* ![](/img/dia-16/index/16.png) */}
+
+Além disso, acima dos testes de integração, temos os testes end to end E2E
+
+{/* ![](/img/dia-16/index/17.png) */}
+
+A piramida de testes se tornou uma referencia sobre como aplicar cada tipo de teste, sendo mais testes unitários, menos testes de integração e menos ainda testes e2e
+
+Essa ordem surgiu tanto pela questão de velocidade, quanto pela questão de dificuldade entre cada tipo de teste.
+
+{/* ![](/img/dia-16/index/18.png) */}
+
+Essa pirâmidde era sagrada, ninguém questionava… até um usuário do twitter colocar o dedo na ferida.
+
+{/* ![](/img/dia-16/index/19.png) */}
+
+Na realidade foi o Mike que criou essa pirâmide, no livro Succeedubg with Agile
+
+{/* ![](/img/dia-16/index/20.png) */}
+
+O troféu de testes em questão, é o novo modelo proposto pelo pessoal da vercel, propondo um maior peso nos testes de integração.
+
+{/* ![](/img/dia-16/index/21.png) */}
+
+E o modelo Favo de mel, para backends, seria assim:
+
+{/* ![](/img/dia-16/index/22.png) */}
+
+E assim, tem gente defendendo cada um desses modelos, tem gente defendendo que a velocidade deve ser levada em conta, e com o passar do tempo até isso está perdendo a importancia pois testes que eram considerados lentos antigamente hoje já estao rodando relativamente rápido…
+
+Então assim, ao olhar até onde vai essa discussão, ela não acaba…. E eu me vi na mesma posição que o Pedro quando ele começou a programar o [pagar.me](http://pagar.me) , que era: falta de tempo
+
+{/* ![](/img/dia-16/index/23.png) */}
+
+Quando ele começou o [pagar.me](http://pagar.me) o maior objetivo dele, era construir uma empresa API First. Ou seja, para tudo que o cliente conseguir fazer no sistema: disponibilizar isso primeiro em forma de API Rest, para que qualquer outro sistema consiga se integrar.
+
+E ai ele me explicou que na época ele só ia ter tempo para fazer um tipo de teste, ou de unidade, ou de integração, ou e2e. Não ia dar tempo de fazer todos, então ele escolheu o meio termo: integração.
+
+{/* ![](/img/dia-16/index/24.png) */}
+
+O massa é que o TabNews também fez a escolha de ser um projeto `API First`! Por conta da mesma motivação de falta de tempo.

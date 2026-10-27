@@ -1,0 +1,49 @@
+---
+title: "Git Commit | Os 3 estágios"
+order: "5.2"
+lang: pt-BR
+translationStatus: original
+date: 2025-07-02
+notionId: 224cf904-83bd-80db-8987-e1240ba13911
+---
+
+# Git Commit | Os 3 estágios
+
+### Os 3 estágios
+
+{/* ![](/img/dia-05/5-2/01.png) */}
+
+Alterações em um arquivo **precisam passar por 3 estágios** antes de se tornarem "**permanentes**" no projeto.
+
+{/* ![](/img/dia-05/5-2/02.png) */}
+
+{/* ![](/img/dia-05/5-2/03.png) */}
+
+{/* ![](/img/dia-05/5-2/04.png) */}
+1. **Modified** = quando o arquivo que o git já conhece (rastreia) sofre uma alteração e é modificado
+2. **Staged** = quando a alteração desse arquivo é eleita para subir no palco onde a fotografia será tirada pelo git
+3. **Commited** = quando o git tira a foto da alteração e ela passa a fazer parte do log/registro de commits
+
+### Arquivos não rastreados
+
+{/* ![](/img/dia-05/5-2/05.png) */}
+
+{/* ![](/img/dia-05/5-2/06.png) */}
+
+Para saber o que está acontecendo no nosso repositório, precisamos acompanhar o status dele. Para isso podemos usar o comando `git status`
+
+**Untracked** = quando um arquivo não está **nem alterado**, **nem modificado** e **nem commitado**. Ele ainda não é rastreado pelo git.
+
+{/* ![](/img/dia-05/5-2/07.png) */}
+
+### Gitignore e o vale do esquecimento
+
+O .gitignore é um arquivo para dizermos ao git **o que queremos que não seja monitorado**. Pastas locais como `node_modules` e `.next` são um ótimo exemplo desse tipo de arquivo.
+
+{/* ![](/img/dia-05/5-2/08.png) */}
+
+{/* ![](/img/dia-05/5-2/09.png) */}
+
+O `.gitignore` precisa ser commitado para que seu funcionamento não se restrinja apenas ao ambiente local.
+
+{/* ![](/img/dia-05/5-2/10.png) */}

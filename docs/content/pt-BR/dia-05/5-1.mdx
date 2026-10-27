@@ -1,0 +1,80 @@
+---
+title: "Git log e o Jogo dos 7 Erros"
+order: "5.1"
+lang: pt-BR
+translationStatus: original
+date: 2025-07-02
+notionId: 224cf904-83bd-804c-8a7d-ec5e275afddb
+---
+
+# Git log e o Jogo dos 7 Erros
+
+### Links
+
+Sugestão de leitura mais técnica → [\[pt-BR] Fundamentos do Git, um guia completo](https://dev.to/leandronsp/pt-br-fundamentos-do-git-um-guia-completo-2djh?s=09)
+
+---
+
+Conhece o jogo dos 7 erros?
+
+{/* ![](/img/dia-05/5-1/01.png) */}
+
+### Diff
+
+Os sistemas centralizados que vieram antes do git tinham um **gargalo**, que aparecia em projetos **na medida em que eles iam ficando velhos.**
+
+Por uma questão de otimização, esses versionadores utilizavam a estratégia de `delta encoding` para criar uma linha do tempo em que cada modificação é registrada apenas como a diferença entre o arquivo anterior e o atual.
+
+Que é a famosa `diff` (difference). O que era **atrente por ocupar menos espaço** **no HD**.
+
+{/* ![](/img/dia-05/5-1/02.png) */}
+
+Então na real, essa linha do tempo era como o **arquivo inicial** **+ uma sequencia de diferenças.**
+
+{/* ![](/img/dia-05/5-1/03.png) */}
+
+E o problema estava no fato de que **em projetos grandes era custoso** ter todo esse histórico de milhares de pequenas/ou grandes alterações para poder manter a integridade do código. **Pois para ter a versão mais recente de um arquivo você era obrigado a processar todo o histórico de diffs, dele**.
+
+{/* ![](/img/dia-05/5-1/04.png) */}
+
+Ou seja, trabalhar de uma forma rápida em um mar de diffs, se torna uma tarefa de **alto custo computacional.**
+
+{/* ![](/img/dia-05/5-1/05.png) */}
+
+E foi esse o problema que o git resolveu, decidindo ficar exatamente no **meio termo** entre o jeito rústico do `Ctrl+C` e `Ctrl+V` e o sistema de `delta encoding`.
+
+{/* ![](/img/dia-05/5-1/06.png) */}
+
+### Então como o git funciona?
+
+Ele utiliza blobs para fazer essas fotografias/registros/logs do código, registrando cada arquivo por completo (não apenas as diffs). Cada foto integral de um arquivo recebe um identificador. **Esse identificador + o conteúdo do arquivo** se tornam um objeto `blob` (Binary Large OBject) e é salvo dentro da pasta `.git`.
+
+{/* ![](/img/dia-05/5-1/07.png) */}
+
+E a sacada é que, quando um arquivo não sofre nenhuma alteração, a fotografia mais atual, aponta para o blob do respectivo arquivo que está na fotografia anterior.
+
+{/* ![](/img/dia-05/5-1/08.png) */}
+
+#### Entendendo de outra forma
+
+Imagina que em cima da sua mesa estão todos os arquivos do seu projeto, em todas as versões existentes. O git é como um secretario que seleciona os arquivos que você pedir e lhe entrega.
+
+#### Para fechar com chave de ouro
+
+Com o comando `git log` podemos ver o **histórico de commits**
+
+**Log = Registro**
+
+{/* ![](/img/dia-05/5-1/09.png) */}
+
+{/* ![](/img/dia-05/5-1/10.png) */}
+
+{/* ![](/img/dia-05/5-1/11.png) */}
+
+A palavra commit siginifica **compromisso**. E no git a lógica é que o **autor** de cada commit **se compromete/é responsável** pelas alterações nele presentes.
+
+{/* ![](/img/dia-05/5-1/12.png) */}
+
+{/* ![](/img/dia-05/5-1/13.png) */}
+
+O git **diffato** não armazena diffs, mas ele é tão foda que na hora de exibir os detalhes de um commit ele **calcula o diff entre as duas fotografias** \<3

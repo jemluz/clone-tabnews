@@ -1,0 +1,42 @@
+---
+title: "Configurar o Editor Config"
+order: "10.2"
+lang: pt-BR
+translationStatus: original
+date: 2025-09-13
+notionId: 26ccf904-83bd-8093-975f-e08968dabff3
+---
+
+# Configurar o Editor Config
+
+Na medida em que o foco aumenta, a probabilidade de desistencia do projeto diminuí
+
+{/* ![](/img/dia-10/10-2/01.png) */}
+
+Com o  [EditorConfig](https://editorconfig.org/) vamos definir instruções de como nosso editor deve se comportar
+
+[EditorConfig](https://editorconfig.org/)
+
+{/* ![](/img/dia-10/10-2/02.png) */}
+
+Como por exemplo a qual a largura da identação, será medida com espaços ou tabs?
+
+{/* ![](/img/dia-10/10-2/03.png) */}
+
+Para isso iremos criar um arquivo chamado `.editorConfig` e commitar ele no nosso proj. Assim toda vez que ele for lido automaticamente irá configurar o editor.
+
+{/* ![](/img/dia-10/10-2/04.png) */}
+
+Então vamos criar o nosso arquivo e na primeira linha dizer que essa é a pasta raiz do projeto, com `root = true`
+
+{/* ![](/img/dia-10/10-2/05.png) */}
+
+O Editor Config funciona de uma forma que você pode definir um arquivo desses para cada pasta do seu projeto, se quiser. E a interpretação das regras irá acontecer de modo cumulativo.
+
+Ao editar um arquivo, ele procura o arquivo `.editorconfig` na mesma pasta, se não achar, ele sobe uma pasta, e por ai vai até passar por todas as pastas e coletar todas as regras espelhadas pelos `.editorconfig` do seu projeto
+
+{/* ![](/img/dia-10/10-2/06.png) */}
+
+Faça o commit e o push, e em seguida marque a tarefa como concluída
+
+{/* ![](/img/dia-10/10-2/07.png) */}

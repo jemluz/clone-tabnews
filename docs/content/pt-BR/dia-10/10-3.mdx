@@ -1,0 +1,70 @@
+---
+title: "Configurar o Prettier"
+order: "10.3"
+lang: pt-BR
+translationStatus: original
+date: 2025-09-15
+notionId: 26fcf904-83bd-809f-91c4-c610107bf294
+---
+
+# Configurar o Prettier
+
+O editor config que preparamos anteriormente apenas garante identação para os códigos futuros, isto é: o que ainda iremos escrever.
+
+Quanto aos códigos que já existiam no projeto, ele não corrige, e para isso precisaremos do Prettier.
+
+{/* ![](/img/dia-10/10-3/01.png) */}
+
+Vamos usar o módulo Prettier do npm
+
+{/* ![](/img/dia-10/10-3/02.png) */}
+
+Use o comando `npm install prettier -D` para instalar como dependencia de desenvolvimento
+
+{/* ![](/img/dia-10/10-3/03.png) */}
+
+Agora no package.json temos uma parte só para dependencias de desenvolvimento, dependencias essas que só interessam à nós: devs
+
+{/* ![](/img/dia-10/10-3/04.png) */}
+
+Isso será util para manter os ambientes isolados apenas com os módulos necessários.
+
+{/* ![](/img/dia-10/10-3/05.png) */}
+
+Além disso vamos adicionar um script chamado `lint:check` para “lintar” (fazer uma varredura no nosso código)
+
+{/* ![](/img/dia-10/10-3/06.png) */}
+
+Lint = análise estática de código
+
+Ao rodar…
+
+{/* ![](/img/dia-10/10-3/07.png) */}
+
+Esse script acima é o modo “leitura” do prettier, além disso ele tem um modo escrita onde ele corrige os erros.
+
+{/* ![](/img/dia-10/10-3/08.png) */}
+
+Vamos adicionar esse modo “escrita” ao script `lint:fix`
+
+{/* ![](/img/dia-10/10-3/09.png) */}
+
+Ao rodar…
+
+{/* ![](/img/dia-10/10-3/10.png) */}
+
+o prettier oassou por todos os arquivos e consertou o que tinha que ser consertado!
+
+Calma calma tamo quase la, por fim, vamos instalar a extensão do prettier para o vsCode, e usar ela como “Default Formatter” nas configurações do vs code
+
+{/* ![](/img/dia-10/10-3/11.png) */}
+
+{/* ![](/img/dia-10/10-3/12.png) */}
+
+Desligue também a opção auto save
+
+{/* ![](/img/dia-10/10-3/13.png) */}
+
+Não esqueça de commitar e marcar a tarefa como concluída
+
+{/* ![](/img/dia-10/10-3/14.png) */}

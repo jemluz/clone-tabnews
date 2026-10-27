@@ -1,0 +1,38 @@
+---
+title: "Git push (com ainda mais força)"
+order: "6.2"
+lang: pt-BR
+translationStatus: original
+date: 2025-07-14
+notionId: 230cf904-83bd-8025-9fae-e67a425bc6ea
+---
+
+# Git push (com ainda mais força)
+
+Toda vez que você faz um push que foi rejeitado, vai haver uma divergencia entre a sua versão local e a versão em nuvem
+
+{/* ![](/img/dia-06/6-2/01.png) */}
+
+{/* ![](/img/dia-06/6-2/02.png) */}
+
+Ao fazer o push normalmente pela primeira vez ocorreu tudo bem. Isso graças a verificação do git que avalia para onde está apontando o commit mais recente do código local. Quando isso não diverge da nuvem, o git aprova o push de primeira.
+
+{/* ![](/img/dia-06/6-2/03.png) */}
+
+{/* ![](/img/dia-06/6-2/04.png) */}
+
+{/* ![](/img/dia-06/6-2/05.png) */}
+
+Mas quando fazemos um amend e tentamos usar o push, aquela verificação do git vai apontar divergencia.
+
+Isso porque TODO amend é um commit novo, o commit original que foi “amendado” não é modificado, ele descartado (arquivado) e deixa de fazer parte do histórico.
+
+{/* ![](/img/dia-06/6-2/06.png) */}
+
+Então na prática, após um amend, temos um commit local, e um commit na nuvem com mensagens e modificações similares, porém são commits distintos. E por isso o git rejeita, pois ele não tem como saber qual seria o certo.
+
+{/* ![](/img/dia-06/6-2/07.png) */}
+
+{/* ![](/img/dia-06/6-2/08.png) */}
+
+Para sobrescrever um commit pelo outro na nuvem, podemos usar o `git push -f`, mas cuidado, sempre muito cuidado ao usar esse comando, pois é uma ação irreversível.

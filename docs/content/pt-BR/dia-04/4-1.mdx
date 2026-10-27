@@ -1,0 +1,71 @@
+---
+title: "Página inicial"
+order: "4.1"
+lang: pt-BR
+translationStatus: original
+date: 2025-07-01
+notionId: 223cf904-83bd-80ef-b4b0-ffb1adebd2e3
+---
+
+# Página inicial
+
+Você pode usar `Ctrl + L` ou digitar o comando `clear` se quiser limpar o terminal
+
+Paramos nesse erro ao tentar rodar o servidor localmente com o comando `npm run dev` pois para o servidor funcionar, **precisamos criar os arquivos de páginas dentro do projeto.**
+
+{/* ![](/img/dia-04/4-1/01.png) */}
+
+Esse tipo de roteamento é chamado de:
+
+{/* ![](/img/dia-04/4-1/02.png) */}
+
+{/* ![](/img/dia-04/4-1/03.png) */}
+
+E é o que o **Next** espera de nós. Ele se inspirou no clássico **PHP.**
+
+{/* ![](/img/dia-04/4-1/04.png) */}
+
+No **PHP**, quando usavamos **apache** (um tipo de servidor), ao detectar uma requisição para `/produtos` , o apache procurava por um arquivo `produtos.php` para servir
+
+{/* ![](/img/dia-04/4-1/05.png) */}
+
+Temos **2 tipos** de roteamento possível no **Next** e vamos usar o **Pages Router** para começar
+
+#### App Router
+
+#### Pages Router (vamos usar esse)
+
+|   |   |   |
+| --- | --- | --- |
+| Característica | Pages Router | App Router |
+| Diretório principal | `pages/` | `app/` |
+| Suporte a layouts | Limitado | Aninhados |
+| Renderização | Client-side/server | Server + Client + RSC |
+| Flexibilidade | Menor | Maior |
+| Ideal para | Projetos simples | Projetos modernos/grandes |
+
+Vamos criar um arquivo `pages/index.js` com um componente bem simples para que o **Next** possa encontrar e servir.
+
+O `export default` faz com que o componente `Home` seja **disponibilizado por padrão** para qualquer outro arquivo que queira acessar este.
+
+`export` = torna esse componente **visível** para outros arquivos
+
+`default` = define o componente como **principal** **na exportação**
+
+{/* ![](/img/dia-04/4-1/06.png) */}
+
+Ao criarmos a página index estamos pisando na exata fronteira entre o **Next** (Servidor) e o **React** (Componentes, conteúdo do nosso site)
+
+{/* ![](/img/dia-04/4-1/07.png) */}
+
+Agora podemos rodar nosso projeto alegremente usando aquele comando `npm run dev`
+
+{/* ![](/img/dia-04/4-1/08.png) */}
+
+{/* ![](/img/dia-04/4-1/09.png) */}
+
+Podemos usar o painel de **Portas** do vs code/codespaces para gerenciar a visibilidade da porta que estamos usando (caso queira testar o projeto no celular também)
+
+{/* ![](/img/dia-04/4-1/10.png) */}
+
+{/* ![](/img/dia-04/4-1/11.png) */}

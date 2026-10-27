@@ -1,0 +1,97 @@
+---
+title: "First wall"
+order: "3.1"
+lang: en-US
+translationStatus: manual
+date: 2025-06-24
+notionId: 21ecf904-83bd-8068-84fe-de0dde0cfb6b
+---
+
+# First wall
+
+### Links
+
+Site do framework  →  [Next.js by Vercel - The React Framework](https://nextjs.org/)
+
+Empresa por trás →  [Vercel: Build and deploy the best web experiences with the Frontend Cloud](https://vercel.com/)
+
+---
+
+### A primeira parede
+
+If your house is a web application, and in the previous lesson we built its foundation with `.nvmrc`, we can say that the walls of the house can be made by **Next**.
+
+{/* ![](/img/dia-03/3-1/01.png) */}
+
+**Next.js** is a web development framework, one of several that exist.
+
+And in these initial hours it is common to be indecisive about which one to choose, and even suffer from:
+
+{/* ![](/img/dia-03/3-1/02.png) */}
+
+{/* ![](/img/dia-03/3-1/03.png) */}
+
+But don't worry, it's a framework that will have little influence on the way you build a website. It won't dictate which furniture should go inside the house (React will do that, lol), or how many rooms it should have, for example.
+
+It will limit itself to providing the structure that will house your application, regardless (or at least very little dependent) on who it is.
+
+#### When conflict of interest is a delicinha | Next.js
+
+With next, both building the masonry (walls) and inaugurating the work (hosting the website) has never been so easy, because the company responsible for **Next**: **Vercel**, is also a web application host.
+
+{/* ![](/img/dia-03/3-1/04.png) */}
+
+Ultimately, using **Next** guarantees you one of the best integrations between framework and web host. Since both are from the same company.
+
+{/* ![](/img/dia-03/3-1/05.png) */}
+
+### The material list | package.json
+
+Okay, but before we build a wall, we need bricks, cement, and tools, right?
+
+Well, throughout your journey as a dev contractor, you will need a well-defined list of materials before starting any stage of construction. And that's exactly what we use **package.json** for.
+
+The **package.json** is a manifest that will gather important information about your application.
+
+{/* ![](/img/dia-03/3-1/06.png) */}
+
+And one of these pieces of information is nothing more or less than the project's materials list (**dependencies**), in which we register the libraries/modules/resources needed to build and keep the system running.
+
+And also specifying the type of each one (its **version**) to avoid compatibility problems in the future.
+
+{/* ![](/img/dia-03/3-1/07.png) */}
+
+To create the **package.json**, just run the command `npm init` and fill in the data in the terminal initially. After that, every new item registration in the bill of materials (dependencies) must be done with the command `npm install`.
+
+{/* ![](/img/dia-03/3-1/08.png) */}
+
+It asks for some information, let's leave everything as default except the last one about the license.
+
+{/* ![](/img/dia-03/3-1/09.png) */}
+
+At the end it shows you a summary for you to review before the creation is completed.
+
+{/* ![](/img/dia-03/3-1/10.png) */}
+
+Now let's install **Next.js**
+
+{/* ![](/img/dia-03/3-1/11.png) */}
+
+And finally **React**
+
+{/* ![](/img/dia-03/3-1/12.png) */}
+
+But there's one thing that we should notice, **React** it's a hydra. It has multiple renderers.
+
+- You can render web interfaces
+- Terminal interfaces
+- TV Interfaces
+- Mobile interfaces
+- 3D Renderings
+- And many others
+
+… and then since we want to build the tabnews, we will use the web renderer `react-dom`
+
+{/* ![](/img/dia-03/3-1/13.png) */}
+
+{/* ![](/img/dia-03/3-1/14.png) */}

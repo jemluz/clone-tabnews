@@ -1,0 +1,210 @@
+---
+title: "Encostando a mão no Protocolo HTTP"
+order: "16.1"
+lang: pt-BR
+translationStatus: original
+date: 2026-03-17
+notionId: 326cf904-83bd-80e4-ac94-efc2b25d4461
+---
+
+# Encostando a mão no Protocolo HTTP
+
+Nessa aula vamos encostar a mão no protocolo HTTP
+
+{/* ![](/img/dia-16/16-1/01.png) */}
+
+Isso vai esclarecer muita coisa na sua mente sobre tudo que existe na internet. E também será a base para conceitos como **Cookies**, **Headers/Cabeçalhos, Status Codes**.
+
+{/* ![](/img/dia-16/16-1/02.png) */}
+
+Vamos atuar na primeira tarefa “Criar endpoint `/status`”
+
+{/* ![](/img/dia-16/16-1/03.png) */}
+
+Endpoint = Ponto final / Local final
+
+{/* ![](/img/dia-16/16-1/04.png) */}
+
+Na prática qualquer endereço na internet é um endpoint.
+
+{/* ![](/img/dia-16/16-1/05.png) */}
+
+Mas quando usamos o termo “Endpoint” normalmente estamos nos referindo ao endereço de uma **API**
+
+### Entendendo APIs
+
+{/* ![](/img/dia-16/16-1/06.png) */}
+
+Mas o nome API não ajuda ninguém a entender o que é uma API, nem ajuda para explicar a alguém o que é uma API.
+
+Então eu vou passar a minha definição, e do nome:
+
+{/* ![](/img/dia-16/16-1/07.png) */}
+
+Vamos manter só a palavra INTERFACE, e seria legal você fazer o exercício de entender que:
+
+De forma grosseira, TUDO é uma INTERFACE
+
+{/* ![](/img/dia-16/16-1/08.png) */}
+
+A página do Github é uma interface que você interage, a página do tabnews é uma interface.
+
+{/* ![](/img/dia-16/16-1/09.png) */}
+
+{/* ![](/img/dia-16/16-1/10.png) */}
+
+E um microondas também é uma interface. Você não precisa entender como nada lá dentro funciona para conseguir usá-lo.
+
+{/* ![](/img/dia-16/16-1/11.png) */}
+
+Tudo com que você interage, se você não tiver mexendo nos detalhes de implementação. Você provavelmente vai estar mexendo em uma **Interface**. Justamente para evitar mexer nos detalhes de como as coisas foram feitas.
+
+Esse é um dos motivos pelos quais **interfaces** e **abstrações** existem.
+
+{/* ![](/img/dia-16/16-1/12.png) */}
+
+Elas são como as Bordas das funcionalidades e responsabilidades do seu sistema. A falta delas, faz o seu sistema ter códigos macarrônicos.
+
+Você olha para o código e não sabe onde uma Responsabilidade começa ou termina. Igual a um fio de macarrão no meio de uma macarronada.
+
+{/* ![](/img/dia-16/16-1/13.png) */}
+
+A calculadora que fizemos é também uma interface!
+
+{/* ![](/img/dia-16/16-1/14.png) */}
+
+Mas aí você deve estar se perguntando:
+
+### Qual a diferença entre uma calculadora e a home do tabnews, já que os 2 são uma interface?
+
+Uma é programável e a outra não. E cada tipo de interface serve para agradar um público alvo diferente.
+
+{/* ![](/img/dia-16/16-1/15.png) */}
+
+Se você visitar o TabNews, você terá várias informações e verá que é uma interface web, que serve para nós humanos (público alvo).
+
+{/* ![](/img/dia-16/16-1/16.png) */}
+
+Mas se você duplicar o endereço e completar com `/api/v1/contents`
+
+{/* ![](/img/dia-16/16-1/17.png) */}
+
+Verá que são as exatas mesma informações, mas de uma forma mais programável. O público alvo aqui são os softwares que irão consumir essa API.
+
+Informações como layout, menus e cores, por exemplo, são descartáveis para esse público. Mas para o público anterior dos humanos, são relevantes.
+
+{/* ![](/img/dia-16/16-1/18.png) */}
+
+Os dados que vem da API é como se fosse o filé mignon das informações. Você e o programa que estiver construindo, podem fazer o que quiser com elas.
+
+Por exemplo: esse repo do gabrielsozinho se chama TabProjetos e agrega o que a comunidade criou com a API do TabNews
+
+{/* ![](/img/dia-16/16-1/19.png) */}
+
+Tem sites, apps mobile, clientes CLI para usar no terminal, bibliotecas para outras linguagens e até extensões de navegador.
+
+{/* ![](/img/dia-16/16-1/20.png) */}
+
+{/* ![](/img/dia-16/16-1/21.png) */}
+
+{/* ![](/img/dia-16/16-1/22.png) */}
+
+Por exemplo o `tn-cli` é do cetorres e implementou o TabNews para terminal
+
+{/* ![](/img/dia-16/16-1/23.png) */}
+
+Isso se chama **TUI** (Text-based User Interface) que nada mais é do que uma interface de usuário baseada em texto. Que é o contrário de uma **GUI** (Graphical User Interface) ou Interface de Usuário Gráfica.
+
+{/* ![](/img/dia-16/16-1/24.png) */}
+
+No fim das contas, tanto **TUIs** quanto **GUIs** conseguem ser criados usando como referência a **API** do tabnews.
+
+Lembra do que estudamos sobre **Client & Server** em aulas passadas (dia 7)? Sobre diferentes clients com tecnologias distintas conseguirem se comunicar através do protocolo HTTP… pois é, se a sua geladeira consegue conversar por HTTP e tiver conexão com a internet, ela conseguirá consumir a API do TabNews.
+
+Esse e muitos outros repositórios foram criados pela comunidade, e ninguém puxou os dados pela Interface Web, e sim pela **Interface de Programação Aplicações** do TabNews
+
+{/* ![](/img/dia-16/16-1/25.png) */}
+
+Com uma API, temos a liberdade de alterar a Interface Web (UI) como quisermos. Melhorando a experiencia dos seres humanos sem encostar no tratamento de dados.
+
+E do ponto de vista empresarial também traz uma vantagem, quando separamos a interface da API, podemos organizar melhor o trabalho do backend e do frontend.
+
+Mas em relação ao que eu falei antes, que a API era programável e uma Interface Web não era… na verdade: tudo é programável!
+
+Tanto que um teste E2E simula uma interface web real.
+
+{/* ![](/img/dia-16/16-1/26.png) */}
+
+Mas integrar com uma interface web, em comparação a uma API, é mais difícil. É mais frágil. E nós vamos mirar ali no meio: nos Testes de Integração, para testar nossa API.
+
+{/* ![](/img/dia-16/16-1/27.png) */}
+
+Mas para conseguir fazer isso vamos precisar de pelo menos 1 endpoint. Iremos criar o `/status`, e quando chamado ele irá devolver a saúde do nosso sistema (por exemplo se o banco de dados está conectado, qual a latencia e outras informações.
+
+{/* ![](/img/dia-16/16-1/28.png) */}
+
+O massa é que criar um endpoint de API no Next.js é a coisa mais fácil do mundo. E assim como as páginas, os endpoints também usam um file base routing.
+
+{/* ![](/img/dia-16/16-1/29.png) */}
+
+Essa convenção diz que todo arquivo criado dentro de `pages/api/` se tornará um endpoint.
+
+{/* ![](/img/dia-16/16-1/30.png) */}
+
+Criamos um arquivo status.js e para que ele funcione como rota, precisamos preenche-lo com algum retorno.
+
+Vamos começar criando uma função status, que recebe 2 parametros, onde:
+
+`request` = se trata de tudo que vem do mundo externo e entra no seu sistema
+
+`response` = se trata do que você quer que seu sistema responda
+
+{/* ![](/img/dia-16/16-1/31.png) */}
+
+Se tá confuso calma que a gente vai desconfundir!
+
+Vamos usar o `response` para fazer nosso **endpoint** responder com algo, e esse `response` é um objeto que possuí um método `status`, que é utilizado para definir o **Status Code** da resposta, e esse Status Code é um número que sinaliza se deu tudo certo com a requisição ou não.
+
+Onde por convenção, o valor `200` sinaliza **sucesso**.
+
+{/* ![](/img/dia-16/16-1/32.png) */}
+
+E a ultima parte agora, é enviar algo de volta, e isso é feito pelo método send, que a tradução é “enviar”. Esse método aceita algumas coisas à serem enviadas, e uma delas é uma string, que é o que vamos escrever.
+
+Agora vamos rodar o servidor web, esperar carregar, e acessar o endpoint status com `/api/status`  e …. deu erro?
+
+{/* ![](/img/dia-16/16-1/33.png) */}
+
+Ops! Ta tudo certo com a função, mas como vimos lá no passado, um arquivo .js pode ter várias funções dentro dele, e se tem várias, não tem como o Next saber qual é a certa.
+
+Para resolver isso precisamos exportar a função como padrão.
+
+{/* ![](/img/dia-16/16-1/34.png) */}
+
+E agora que eu salvei o arquivo e atualizei, aqui está! Mas nota que os acentos estão com caracteres estranhos?
+
+{/* ![](/img/dia-16/16-1/35.png) */}
+
+Isso acontece porque o método send, assume pouca coisa sobre o que está sendo enviado.
+
+{/* ![](/img/dia-16/16-1/36.png) */}
+
+Ele não define por exemplo o charset (ou character set), que define qual o tipo de teclado foi utilizado para escrever a mensagem.
+
+{/* ![](/img/dia-16/16-1/37.png) */}
+
+Mas tem um outro método que assume que é: ao invés do `.send()`, usar o `.json()` . Ele assume o charset como `utf-8`, que é tipo um padrão global.
+
+{/* ![](/img/dia-16/16-1/38.png) */}
+
+Ele também espera receber um objeto que atenda ao formado json. Que inclui uma **chave** e um **valor**.
+
+{/* ![](/img/dia-16/16-1/39.png) */}
+
+Agora ao retornar à página e atualizar: vemos o objeto json sendo entregue com as informações de forma estruturada!
+
+{/* ![](/img/dia-16/16-1/40.png) */}
+
+Para que a resposta apareça bonitinha assim, eu estou usando uma extensão no meu navegador chamada JSON Viewer
+
+{/* ![](/img/dia-16/16-1/41.png) */}

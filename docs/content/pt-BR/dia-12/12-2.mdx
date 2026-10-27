@@ -1,0 +1,185 @@
+---
+title: "Chorinho de DNS"
+order: "12.2"
+lang: pt-BR
+translationStatus: original
+date: 2025-10-16
+favorite: true
+notionId: 287cf904-83bd-8011-a614-f4e67e4e6a25
+---
+
+# Chorinho de DNS
+
+Na aula anterior configuramos o DNS para o nosso domínio. E deu tudo certo!
+
+Maaas, a vercel tem escondido algo de você! E essa aula é sobre isso.
+
+### Recapitulando
+
+Trocamos o servidor (autoritativo) do [registro.br](http://registro.br) por um da vercel
+
+{/* ![](/img/dia-12/12-2/01.png) */}
+
+Lembre: esse ultimo servidor não é o servidor do site, é o autoritativo. Ele está naquele passo para trás, para dar 2 para frente.
+
+Na cadeia inteira de resolução de DNS é ele quem tem a “autoridade” de dizer:
+
+“Ó o servidor final, onde está o site, está localizado no seguinte IP”
+
+{/* ![](/img/dia-12/12-2/02.png) */}
+
+### E daí surgem as perguntas
+
+De onde o servidor autoritativo tirou o IP do servidor final?
+
+Onde isso foi configurado?
+
+Onde está o servidor autoritativo afinal?
+
+Essa é fácil de responder, basta ir no menu de domínios e selecionar o dominio desejado.
+
+{/* ![](/img/dia-12/12-2/03.png) */}
+
+A página que abre em seguida É DO SERVIDOR AUTORITATIVO.
+
+{/* ![](/img/dia-12/12-2/04.png) */}
+
+Aquele campo ali “NAMESERVERS” na real significa “AUTHORITATIVE NAMESERVER”. Mas na boca do povo é comumente tratado como AUTHORITATIVE SERVER.
+
+Então:
+
+NAMESERVERS = AUTHORITATIVE SERVER = AUTHORITATIVE NAMESERVER
+
+Descendo a página um pouco mais, encontramos os DNS Records (ou Registros de DNS) que este servidor está admnistrando.
+
+{/* ![](/img/dia-12/12-2/05.png) */}
+
+Esses registros foram criados automáticamente pela vercel. É tanto que eles não podem ser modificados.
+
+Um deles é o A record, na raiz do domínio, que aponta para o próprio IP do servidor da vercel (76.76.21.21)
+
+Relembrando… quando o Recursive Resolver devolve o IP final para o computador do usuário, é esse valor que acaba sendo retornado (76.76.21.21) para ele se conectar e acessar a página.
+
+{/* ![](/img/dia-12/12-2/06.png) */}
+
+### Ta certo mas ta errado
+
+O que acabei de explicar acima tá certo, e ta errado! E para entender isso vamos juntos provar mecanicamente esa informação!
+
+Iremos tentar provar que está certo, e veremos que está errado. Para isso, no codespaces, irei usar uma ferramenta chamada dig.
+
+Ela é uma ferramenta especializada em fazer requests contra servidores DNS, e de forma manual poderemos fazer as consultas que quisermos para ver os registros em qualquer momento da cadeia de resolução de DNS.
+
+{/* ![](/img/dia-12/12-2/07.png) */}
+
+Para começar precisamos instalar o dig, para isso irei usar o comando `sudo apt update`
+
+`sudo` = está executando como adm
+
+`apt` = advanced package tool
+
+`update` = irá atualizar a lista dos pacotes disponíveis
+
+{/* ![](/img/dia-12/12-2/08.png) */}
+
+Em seguida irei usar o  `sudo apt install dnsutils` e o dig está incluso aí dentro.
+
+{/* ![](/img/dia-12/12-2/09.png) */}
+
+Agora que nós já podemos utilizar o dig, só de rodar o comando `dig` ele já nos retorna a lista de Root Servers
+
+{/* ![](/img/dia-12/12-2/10.png) */}
+
+### Usando o dig para caçar records
+
+Vamos utilizar o dig para buscar aquele `A record` que a Vercel inseriu automaticamente no nosso servidor autoritativo.
+
+{/* ![](/img/dia-12/12-2/11.png) */}
+
+O que estamos esperando é que ele retorne exatamente esse valor: `76.76.21.21`
+
+Vamos usar o comando `dig `[`fintab.com.br`](http://fintab.com.br)` A`
+
+[fintab.com.br](http://fintab.com.br) = nome do domínio desejado
+
+A = nome do record (registro) desejado
+
+{/* ![](/img/dia-12/12-2/12.png) */}
+
+Ele retornou 2 A Record?? E nenhm deles é 76.76.21.21!
+
+{/* ![](/img/dia-12/12-2/13.png) */}
+
+### GeoDNS
+
+Isso acontece pq o servidor da Vercel (e outros) utilizam um negócio chamado GeoDNS, que responde uma request de DNS pelo A Rrecord, com o IP mais próximo disponível de quem está fazendo a request.
+
+{/* ![](/img/dia-12/12-2/14.png) */}
+
+Na prática o GeoDNS é uma espécie de plugin para o BIND (que é p servidor mais popular do mundo para gerenciamento e resolução de DNS)
+
+{/* ![](/img/dia-12/12-2/15.png) */}
+
+{/* ![](/img/dia-12/12-2/16.png) */}
+
+Ou seja, dependendo da localização de onde o DNS está sendo resolvido (por exemplo: no Recursive Resolver da sua provedora de internet) o GeoDNS vai manipular o A Record do seu domínio e de forma dinâmica tentar entregar o servidor final da vercel mais próximo (geograficamente falando) do resolver! Para daí, ele entregar isso para a sua máquina e ela acessar.
+
+Por isso que se voltarmos no DNS checker, digitamos o domínio, selecionamos o A Record e pedimos para consultar: verá que cada região do mundo retorna IPs diferentes.
+
+Isso significa dizer que a vercel distribuiu pelo mundo vários servidores web e pelo GeoDNS tá sendo feito um match entre eles e quem tá resolvendo o DNS
+
+{/* ![](/img/dia-12/12-2/17.png) */}
+
+### Ligando lé com cré
+
+Se a gente conseguir criar um record e depois capturar ele através da resolução de DNS, seria um excelente exercicio para ver na prática essa entrada corresponder a uma saída com mesmo valor.
+
+Vamos criar um registro TXT, e deixar o campo “Name” em branco, isso fará o record ser vinculado na raíz do domínio e não em um subdomínio
+
+{/* ![](/img/dia-12/12-2/18.png) */}
+
+E por fim preencher o texto
+
+{/* ![](/img/dia-12/12-2/19.png) */}
+
+E fica a pergunta:
+
+Será que teremos que esperar horas e horas para esse record ser propagado pela cadeia de resolução de DNS, ou veremos de imediato?
+
+{/* ![](/img/dia-12/12-2/20.png) */}
+
+{/* ![](/img/dia-12/12-2/21.png) */}
+
+E a resposta é, só propagaria se ouvesse um cache previo dessa informação.
+
+Não é a cadeia que propaga o valor pro mundo, é o mundo que consulta a cadeia até chegar nesse valor. E se não tem um cache no meio do caminho, ele valor não precisa ser atualizado.
+
+Usando o comando `dig `[`fintab.com.br`](http://fintab.com.br)` TXT +trace` conseguimos ver no detalhe todo o percurso de resolução de DNS
+
+Começando pela consulta aos 13 Root Servers
+
+{/* ![](/img/dia-12/12-2/22.png) */}
+
+Chegando no TLD .br
+
+{/* ![](/img/dia-12/12-2/23.png) */}
+
+Passando pelo DNS da vercel
+
+{/* ![](/img/dia-12/12-2/24.png) */}
+
+E chegando por fim no Servidor Autoritativo
+
+{/* ![](/img/dia-12/12-2/25.png) */}
+
+E pelo DNS checker tbm da para conferir
+
+{/* ![](/img/dia-12/12-2/26.png) */}
+
+### Desafio
+
+Encontre o record escondido no domínio curso.dev!
+
+{/* ![](/img/dia-12/12-2/27.png) */}
+
+{/* ![](/img/dia-12/12-2/28.png) */}

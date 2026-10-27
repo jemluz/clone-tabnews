@@ -1,0 +1,40 @@
+---
+title: "Git Push"
+order: "6"
+lang: pt-BR
+translationStatus: original
+date: 2025-07-03
+notionId: 225cf904-83bd-80f4-b896-f74ccab56bad
+---
+
+# Git Push
+
+Nossa situação atual é essa: temos mais coisas no ambiente local do que em nuvem (origin) que está no github
+
+{/* ![](/img/dia-06/index/01.png) */}
+
+O repositório de “origem” está na branch main. Podemos chamar encarar essa branch como uma linha do tempo principal.
+
+{/* ![](/img/dia-06/index/02.png) */}
+
+Branches são ramificações, cópias em algum nível da branch principal, como galhos que derivam de sua árvore.
+
+{/* ![](/img/dia-06/index/03.png) */}
+
+**Local/main** = uma cópia local da branch main
+
+**Origin/main** = a versão original (na nuvem) da branch main
+
+{/* ![](/img/dia-06/index/04.png) */}
+
+Com o comando `git push` podemos atualizar a branch de origin com nossas alterações locais. Ele faz o upload das nossas alterações locais para a nuvem.
+
+{/* ![](/img/dia-06/index/05.png) */}
+
+Essa relação local-remoto pode nos beneficiar muito em casos onde chegamos a um código irreversível localmente, contornando o problema ao excluir o local e baixar novamente a versão remota que está em nuvem
+
+{/* ![](/img/dia-06/index/06.png) */}
+
+Assim como o push faz o upload, o `git pull` faz o download das coisas em nuvem
+
+{/* ![](/img/dia-06/index/07.png) */}

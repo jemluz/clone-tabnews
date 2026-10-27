@@ -1,0 +1,82 @@
+---
+title: "Uma história macabra sobre \"Estilização de Código”"
+order: "10"
+lang: pt-BR
+translationStatus: original
+date: 2025-08-28
+notionId: 25dcf904-83bd-80d7-bad6-e8977a45705b
+---
+
+# Uma história macabra sobre "Estilização de Código”
+
+Por volta do ano de 2015 - 2016 o Filipe trabalhava no [Pagar.me](http://Pagar.me) (um meio de pagamento brasileiro inspirado no Stripe)
+
+{/* ![](/img/dia-10/index/01.png) */}
+
+{/* ![](/img/dia-10/index/02.png) */}
+
+Na época, era uma startup que estava crescendo muito! E sendo liderada por 3 adolescentes
+
+CEO → Henrique Dubugras
+
+CTO → Pedro Franchesci
+
+Lead Developer → Jonathan Lima
+
+{/* ![](/img/dia-10/index/03.png) */}
+
+Quase que a totalidade da base de códigos do [Pagar.me](http://Pagar.me) era JavaScript + Node.js
+
+{/* ![](/img/dia-10/index/04.png) */}
+
+### A biblioteca Standard JS
+
+E nessa época começou a se popularizar uma biblioteca chamada Standard JS, é um formatador de código. Ou seja, você escreve o código do jeito que você quiser, mas ao passar por ele, ele reorganiza e formata tudo para o padrão proposto pelos criadores do Standard JS
+
+{/* ![](/img/dia-10/index/05.png) */}
+
+Porém as regras são super rígidas e não há negociação. Por exemplo ele remove todos os ;
+
+O principal ponto de venda desse módulo é que não se podia configurar nada, e assim, não tinha o que se discutir a respeito, era só implementar
+
+{/* ![](/img/dia-10/index/06.png) */}
+
+E lá no [pagar.me](http://pagar.me) devido ao crescimento absurdo, cada dev programava de um jeito. Não havia padrão.
+
+Abaixo alguns exemplos de como códigos iguais podem ser diferentes, considerando espaços ou não, aspas simples ou aspas duplas, saltos de linhas ou não.
+
+{/* ![](/img/dia-10/index/07.png) */}
+
+{/* ![](/img/dia-10/index/08.png) */}
+
+{/* ![](/img/dia-10/index/09.png) */}
+
+Então o Jonathan bateu o martelo e falou, “vou aplicar o Standard JS no projeto inteiro”. E o Pedro quase teve um treco por odiar o estilo sugerido pelo módulo.
+
+### O maior PR da história do Pagar.me
+
+O PR que formatava todas as linhas de todos os arquivos do projeto era enorme e até travava o GitHub.  É capaz de ter sido o maior PR da história da empresa.
+
+Não tinha como fazer a revisão, era humanamente impossível.
+
+{/* ![](/img/dia-10/index/10.png) */}
+
+Pedro: “Você vai fazer mesmo esse merge ai?”
+Jonathan: “Vou”
+Pedro: “Então tá bom, na segunda-feira eu não tenho mais empresa. Boa sorte com o deploy”
+
+### Para fechar a trama
+
+O CI fez o projeto passar por todos os testes com as alterações daquele PR, e tinha teste para caramba, e todos passaram. O merge foi feito, e o deploy também.
+
+{/* ![](/img/dia-10/index/11.png) */}
+
+Filipe Deschamps: “Eu não me lembro quanto tempo demorava o deploy na época, mas vamos dizer que sei lá. demorou 2min… eu garanto a você que o consumo de oxigênio do escritório foi pra zero. Ninguém respirou uma única molécula de O2 até o deploy terminar e ver que nenhum dos alertas dos serviços estava apitando. 
+
+E DEU TUDO CERTO, NÃO APITOU, NEM UM ÚNICO PROBLEMA!”
+
+### Moral da história
+
+Não deixe a sua base de códigos crescer com a “sua própria letra”, pois quando entrar outra pessoa, seja pela empresa, seja open-source, ela também irá trazer o jeito dela de escrever. E essas coisas no longo prazo criam ruídos.
+
+Fica mais rápido de se ler o código quando ele segue sempre o mesmo padrão, custa menos energia.

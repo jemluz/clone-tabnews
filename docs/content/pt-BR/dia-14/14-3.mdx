@@ -1,0 +1,157 @@
+---
+title: "Proposta de Arquitetura e Pastas"
+order: "14.3"
+lang: pt-BR
+translationStatus: original
+date: 2025-10-20
+notionId: 292cf904-83bd-80e6-b3a7-f70f543890a3
+---
+
+# Proposta de Arquitetura e Pastas
+
+Se o objetivo era deixar o core do tabnews modificável como resultante…
+
+{/* ![](/img/dia-14/14-3/01.png) */}
+
+Agora o mistério era decidir o valor de algumas outras variáveis que tavam do outro lado dessa equação
+
+{/* ![](/img/dia-14/14-3/02.png) */}
+
+Uma delas foi definir JavaScript como linguagem de programação
+
+{/* ![](/img/dia-14/14-3/03.png) */}
+
+E com a linguagem base definida, o próximo passo seria escolher qual a arquitetura e organização de pastas do projeto.
+
+{/* ![](/img/dia-14/14-3/04.png) */}
+
+Na Milestone 1 do TabNews original, a comunidade criou uma issue chamada Proposta de Arquitetura:
+
+É um link legal para você ver em ação uma dinâmica real de discussões Open Source
+
+{/* ![](/img/dia-14/14-3/05.png) */}
+
+{/* ![](/img/dia-14/14-3/06.png) */}
+
+### A arquitetura de um software não é o mesmo que sua estrutura de pastas
+
+{/* ![](/img/dia-14/14-3/07.png) */}
+
+É tanto verdade que você pode implementar arquiteturas como MVC ou Clean Arch com todos os arquivos dentro de uma mesma pasta. Ou até todo o código de todos os tipos de componentes dentro do mesmo arquivo!
+
+{/* ![](/img/dia-14/14-3/08.png) */}
+
+Separar códigos em arquivos, e organizá-los em pastas não é o que define a arquitetura de um software.
+
+A arquitetura diz respeito aos limites que são determinados para o escopo (onde eles começam, e onde eles terminam) dos componentes, e qual tipo de interação vai acontecer entre esses escopos/componentes.
+
+É uma definição de responsabilidades e “normas de convivencia”
+
+{/* ![](/img/dia-14/14-3/09.png) */}
+
+### Um caso real
+
+Antes de entrar no pagar.me, era uma época em que muitas empresas estavam ainda no under engineering, pouco se discutia e se fazia sobre arquitetura de software
+
+{/* ![](/img/dia-14/14-3/10.png) */}
+
+O cenário de tecnologia do Brasil começou a dar uma reagida e para quem não estava acompanhando as fintechs nessa época… o [pagar.me](http://pagar.me) atingiu um status de startup super hype por diversos motivos: um deles era por estar usando tecnologias super hypes da época como MongoDB e NodeJS. E poquíssimas empresas tinha adotado isso como parte principal da stack.
+
+{/* ![](/img/dia-14/14-3/11.png) */}
+
+Até que ele foi chamado para trabalhar lá, a arquitetura da API era na prática um MVC simples, que foi inventada em 1979
+
+{/* ![](/img/dia-14/14-3/12.png) */}
+
+{/* ![](/img/dia-14/14-3/13.png) */}
+
+E como uma empresa tão inovadora poderia estar usando algo tão simples?
+
+Arquiteturas simples com ótima modelagem fazem você ir longe. lONGE mesmo!
+
+O mais curioso é que o [pagar.me](http://pagar.me) nunca teve um bug na camada da API por conta da qualidade da aplicação do MVC.
+
+### Mas vamos com calma
+
+E se os termos models, controllers estiverem confusos agr, não se preocupa pois iremos encostar nesses conceitos mais pra frente.
+
+{/* ![](/img/dia-14/14-3/14.png) */}
+
+O mais importante agora é você tentar sentir essa sensação que apareceu na hora de tentar definir qual a arquitetura usar para o TabNews.
+
+Sabendo que
+
+- por um lado, ele viu uma arquitetura simples (MVC) recebendo pancadas e pancadas de transações e funcionando magnificamente
+- e por outro lado a proposta do TabNews demandava também uma arquitetura simples.
+
+Por isso, a arquitetura escolhidad foi a MVC.
+
+E que escolha! pois recentemente, o TabNews atingiu a marca de 6 milhões de views! Após 8 meses de projeto!
+
+{/* ![](/img/dia-14/14-3/15.png) */}
+
+### Arquivos e pastas
+
+E voltando lá para o início do TabNews, depois de ler a sugestão da turma naquela issue. Eu publiquei uma proposta: que era separar o que era “código escrito pela gente” de “código de terceiros”
+
+- Na pasta core teriamos os models, componentes, conexão com banco de dados, e tudo que independe de framework
+- Na pasta web teria tudo que o Next.js (framework) seria responsável
+
+{/* ![](/img/dia-14/14-3/16.png) */}
+
+{/* ![](/img/dia-14/14-3/17.png) */}
+
+Mas ai ao explorar mais a ideia foi-se vendo que daria muito trabalho e ficaria exageradamente complexo.
+
+Então adaptamos para que o Next.js possa abraçar o projeto, mas deixando bem isolado o seu core. Definindo bem o inicio e fim das regras de négocio.
+
+{/* ![](/img/dia-14/14-3/18.png) */}
+
+```javascript
+📦root/
+├──📂pages/
+│   └──📄index.js
+├──📂models/
+│   ├──📄users.js
+│   ├──📄content.js
+│   └──📄password.js
+├──📂infra/
+│   ├──📄database.js
+│   ├──📂migrations/
+│   └──📂provisioning/
+│       ├──📂staging/
+│       └──📂production/
+└──📂tests/
+```
+
+Explicando com mais detalhes
+
+├ 📁 pages
+
+│ └ 📃 Index.js
+
+├ 📁 models → Guarda entidades
+
+│ ├ 📃 user.js → Regras de usuário no sistema
+
+│ ├ 📃 content.js → Define o comportamento dos conteúdos publicados
+
+│ └ 📃 password.js → Regras de como esse dado “sensível” é gerado
+
+├ 📁 Infra → Responsável pela infraestrutura
+
+│ ├ 📃 database.js → Biblioteca de conexão com o banco de dados
+
+│ ├ 📁 migrations → será explicado mais tarde
+
+│ ├ 📁 provisioning → será explicado mais tarde
+
+│ │ ├ 📁 staging → será explicado mais tarde
+
+│ │ └ 📁 production → Infra como código, usando Terrafom para subir o banco de dados em outros ambientes
+
+└ 📁 tests → Guarda os testes automatizados
+
+Para fechar, vamos colocar essa estrutura na issue e concluir
+
+{/* ![](/img/dia-14/14-3/19.png) */}

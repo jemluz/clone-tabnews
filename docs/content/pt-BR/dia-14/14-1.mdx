@@ -1,0 +1,140 @@
+---
+title: "Inauguração da Milestone 1: Fundação"
+order: "14.1"
+lang: pt-BR
+translationStatus: original
+date: 2025-10-19
+favorite: true
+notionId: 291cf904-83bd-8097-8e70-e3a56c73d1d4
+---
+
+# Inauguração da Milestone 1: Fundação
+
+Se você ficou feliz com os conhecimentos adquiridos com a conclusão da Milestone 0…
+
+{/* ![](/img/dia-14/14-1/01.png) */}
+
+… você irá gostar muito mais dos conhecimentos que irá adquirir agora na Milestone 1!
+
+{/* ![](/img/dia-14/14-1/02.png) */}
+
+Isso por que o nível de segurança e liberdade que você vai sentir ao concluir ela, é enorme!
+
+Depois dela, chega de ter “ideias que ficam paradas na gaveta”, quando você ver uma oportunidade no mundo, vai poder agarrar ela!
+
+{/* ![](/img/dia-14/14-1/03.png) */}
+
+{/* ![](/img/dia-14/14-1/04.png) */}
+
+### Modelo mental
+
+Vou propro um modelo mental para você: na Milestone 0 nós abrimos um buraco, como um terreno com nosso nome.
+
+{/* ![](/img/dia-14/14-1/05.png) */}
+
+e agora vamos descobri o que será colocado aí dentro
+
+- Se for um arranha céu
+- Se for uma casa
+- Se for um barraco
+
+Cada cenário vai pedir necessidades diferentes na sua fundação
+
+### Coletando pistas com PoCs
+
+Eu gosto de começar a visualisar o que será construído pelo front-end, que é a parte que vai encostar no usuário.
+
+No museu do tabnews, estão listadas algumas pocs de telas iniciais do projeto
+
+{/* ![](/img/dia-14/14-1/06.png) */}
+
+{/* ![](/img/dia-14/14-1/07.png) */}
+
+{/* ![](/img/dia-14/14-1/08.png) */}
+
+{/* ![](/img/dia-14/14-1/09.png) */}
+{/* ![](/img/dia-14/14-1/10.png) */}
+
+{/* ![](/img/dia-14/14-1/11.png) */}
+{/* ![](/img/dia-14/14-1/12.png) */}
+
+{/* ![](/img/dia-14/14-1/13.png) */}
+{/* ![](/img/dia-14/14-1/14.png) */}
+
+{/* ![](/img/dia-14/14-1/15.png) */}
+
+Isso ajuda a especular qual a compreensão do usuário sobre o que ele está vendo, pq vc pode compartilhar essas tentativas com outras pessoas.
+
+Mas serve principalmente para visualizar o que provavelmente vai ser preciso programar lá no backend, ou ter disponível na infraestrutura.
+
+Por exemplo: se seu app for um chat em tempo real, a sua fundação vai precisar atender certas caracteristicas, como uma conexão persistente usando WebSockets
+
+{/* ![](/img/dia-14/14-1/16.png) */}
+
+No caso do TabNews ficou muito claro os elementos que o site ia ter. Como um `Usuário` que poderia publicar um `Conteúdo`, que poderia ser pontuado com `TabCoins`, que serultaria num `Ranking`, e tudo isso poderia ser servido por páginas estáticas
+
+{/* ![](/img/dia-14/14-1/17.png) */}
+
+### Criando a Milestone 1
+
+Então vamos lá, o caminho você já conhece…
+
+{/* ![](/img/dia-14/14-1/18.png) */}
+
+{/* ![](/img/dia-14/14-1/19.png) */}
+
+Vamos add uma Issue sobr arquitetura de software e a organização de arquivos pastas do projeto.
+
+{/* ![](/img/dia-14/14-1/20.png) */}
+
+{/* ![](/img/dia-14/14-1/21.png) */}
+
+A próxima issue é sobre criar um fluxo de Testes Automatizados.
+
+{/* ![](/img/dia-14/14-1/22.png) */}
+
+O próximo item vai tratar de Banco de Dados (Local)
+
+{/* ![](/img/dia-14/14-1/23.png) */}
+
+{/* ![](/img/dia-14/14-1/24.png) */}
+
+A próxima é uma issue de Migrations, fundamental para deixar o trabalho com Banco de Dados algo profissional.
+
+{/* ![](/img/dia-14/14-1/25.png) */}
+
+A próxima issue é de CI (Continuous Integration), que vai servir para proteger todo mundo de fazer besteira com o projeto. Capturar comportamentos errados causados por coisas que nunca iam passar pelo nosso radar humano.
+
+E evitar você de soltar pérolas como “poxa mas na minha máquina funciona”
+
+{/* ![](/img/dia-14/14-1/26.png) */}
+
+Próxima: Linter de código
+
+Ué mas a gente num já tem um? Sim, mas é um linter de estilo. Esse novo Linter tem a ver com a exatidão do código.
+
+Além de que vamos engatar essas coisas no fluxo do continuous integration. Para que o CI diga se está tudo ok ou não.
+
+{/* ![](/img/dia-14/14-1/27.png) */}
+
+A próxima issue é um Linter de commits. Segue a mesma lógica dos outras mas agora direcionado as mensagens de commits.
+
+{/* ![](/img/dia-14/14-1/28.png) */}
+
+Próxima issue: Banco de Dados (Homologação e Produção), onde veremos também sobre algo importantíssimo que são as variáveis de ambiente.
+
+{/* ![](/img/dia-14/14-1/29.png) */}
+
+{/* ![](/img/dia-14/14-1/30.png) */}
+
+E por fim, uma issue para Tipo da Licença
+
+Esse é um tópico que gera muita dúvida, principalmente se eu posso copiar algo open source e usar comercialmente, ou se outras pessoas podem roubar o que eu disponibilizei de forma open source
+
+{/* ![](/img/dia-14/14-1/31.png) */}
+
+Então vai lavando as mão ai, que jaja vai começar a bagaceira
+
+{/* ![](/img/dia-14/14-1/32.png) */}
+
+{/* ![](/img/dia-14/14-1/33.png) */}
