@@ -1,0 +1,18 @@
+export default {
+  index: "Aulas",
+  "day-02": { title: "Dia 2", display: "hidden" },
+  "day-03": { title: "Dia 3", display: "hidden" },
+  "day-04": { title: "Dia 4", display: "hidden" },
+  "day-05": { title: "Dia 5", display: "hidden" },
+  "day-06": { title: "Dia 6", display: "hidden" },
+  "day-07": { title: "Dia 7", display: "hidden" },
+  "day-08": { title: "Dia 8", display: "hidden" },
+  "day-09": { title: "Dia 9", display: "hidden" },
+  "day-10": { title: "Dia 10", display: "hidden" },
+  "day-11": { title: "Dia 11", display: "hidden" },
+  "day-12": { title: "Dia 12", display: "hidden" },
+  "day-13": { title: "Dia 13", display: "hidden" },
+  "day-14": { title: "Dia 14", display: "hidden" },
+  "day-15": { title: "Dia 15", display: "hidden" },
+  "day-16": { title: "Dia 16", display: "hidden" },
+};
