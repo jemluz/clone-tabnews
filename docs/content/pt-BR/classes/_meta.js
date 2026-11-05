@@ -1,5 +1,4 @@
 export default {
-  index: "Aulas",
   "day-02": { title: "Dia 2", display: "hidden" },
   "day-03": { title: "Dia 3", display: "hidden" },
   "day-04": { title: "Dia 4", display: "hidden" },
